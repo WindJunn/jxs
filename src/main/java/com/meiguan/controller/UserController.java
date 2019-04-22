@@ -34,12 +34,11 @@ public class UserController {
         return "update success";
     }
     @RequestMapping("/findOne")
-
     public TbUser findOne(Long id) {
         return userService.findOne(id);
     }
-    @RequestMapping("/findAll")
 
+    @RequestMapping("/findAll")
     public List<TbUser> findAll() {
         return userService.findAll();
     }

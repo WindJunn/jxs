@@ -4,11 +4,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Tolerate;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @Builder(toBuilder = true)
-public class TbUser {
+public class TbUser implements Serializable {
 
     @Tolerate
     public TbUser() {
@@ -33,4 +34,5 @@ public class TbUser {
     private Long points;
     private Date birthday;
     private Date lastLoginTime;
+    private String address;
 }
