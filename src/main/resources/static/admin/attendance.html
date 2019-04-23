@@ -5,7 +5,7 @@
     <!-- 页面meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>人员统计管理</title>
+    <title>考勤统计管理</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
     <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
@@ -50,7 +50,7 @@
   <!-- .box-body -->
                 
                     <div class="box-header with-border">
-                        <h3 class="box-title">人员统计管理</h3>
+                        <h3 class="box-title">考勤统计管理</h3>
                     </div>
 
                     <div class="box-body">
@@ -65,18 +65,50 @@
 										<button type="button" class="btn btn-default" ng-click="" title="批量导入"><i class="fa fa-trash-o"></i> 批量导入</button>
 										<button type="button" class="btn btn-default" ng-click="" title="批量导出"><i class="fa fa-trash-o"></i> 批量导出</button>
 
-										<button type="button" class="btn btn-default" title="新增人员"  data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新增人员</button>
+										<button type="button" class="btn btn-default" title="新增"  data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新增</button>
                                         <button type="button" class="btn btn-default" ng-click="dele()" title="删除"><i class="fa fa-trash-o"></i> 删除</button>
-
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="box-tools pull-right">
                                 <div class="has-feedback">
-							                  人员名称：<input  >
-									<button class="btn btn-default">查询</button>                                    
-                                </div>
+
+									<form action="#">
+										<label for="addr-show">您选择的是：
+											<input type="text" value="" id="addr-show">
+										</label>
+										<br/>
+										<select id="city" onchange="showCity(this)">
+											<option>固原市</option>
+
+										</select>
+										<!--省份选择-->
+										<select id="county" onchange="showCity(this)">
+											<option>全部县(区)</option>
+											<option>原州区</option>
+											<option>西吉县</option>
+											<option>隆德县</option>
+											<option>泾源县</option>
+											<option>彭阳县</option>
+
+										</select>
+
+										<!--城市选择-->
+										<select id="town" onchange="showCountry(this)">
+											<option>全部镇(乡,街道)</option>
+										</select>
+
+										<!--县区选择-->
+										<select id="village" onchange="selecCountry(this)">
+											<option>全部村</option>
+										</select>
+										<button type="button" class="btn met1" onClick="showAddr()" id="button-show" >确定</button>
+										<button class="btn btn-default">查询</button>
+									</form>
+
+
+								</div>
                             </div>
                             <!--工具栏/-->
 
@@ -93,6 +125,8 @@
 										  <th class="sorting">身份证号</th>
 										  <th class="sorting">性别</th>
 									      <th class="sorting">地址</th>
+									      <th class="sorting">考勤状态</th>
+									      <th class="sorting">考勤时间</th>
 					                      <th class="text-center">操作</th>
 			                          </tr>
 			                      </thead>
@@ -105,6 +139,8 @@
 									      <td>{{entity.pid}}</td>
 									      <td>{{entity.sex}}</td>
 									      <td>{{entity.address}}</td>
+									      <td>{{}}</td>
+									      <td>{{}}</td>
 
 										  <td class="text-center">
 											  <button type="button" class="btn bg-olive btn-xs" ng-click="findOne(entity.id)" data-toggle="modal" data-target="#editModal" >详情</button>
@@ -115,7 +151,7 @@
 			                  </table>
 			                  <!--数据列表/-->
 
-							{{list}}
+
 
 							  <!-- 分页 -->
 							<tm-pagination conf="paginationConf"></tm-pagination>
