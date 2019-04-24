@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-04-23 17:57:36
+Date: 2019-04-24 17:22:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,7 +34,7 @@ CREATE TABLE `tb_attendance` (
 -- ----------------------------
 INSERT INTO `tb_attendance` VALUES ('1', '1', '0', '2019-04-23 17:42:45');
 INSERT INTO `tb_attendance` VALUES ('2', '2', '0', '2019-04-23 17:43:03');
-INSERT INTO `tb_attendance` VALUES ('3', '3', '0', '2019-04-23 17:43:13');
+INSERT INTO `tb_attendance` VALUES ('3', '3', '1', '2019-04-23 17:43:13');
 INSERT INTO `tb_attendance` VALUES ('4', '4', '0', '2019-04-23 17:43:19');
 
 -- ----------------------------
@@ -130,8 +130,8 @@ CREATE TABLE `tb_user` (
 -- ----------------------------
 -- Records of tb_user
 -- ----------------------------
-INSERT INTO `tb_user` VALUES ('1', 'ningzhi', '宁知', '123', '640402199512129999', '18829345027', '', '2019-04-19 16:05:23', '2019-04-19 16:05:34', '1', null, null, null, '0', '男', null, null, null, null, '宁夏回族自治区 固原市 原州区');
-INSERT INTO `tb_user` VALUES ('2', 'wangyu', '王玉', '123', '640402199412129999', null, null, '2019-04-23 10:43:14', '2019-04-23 10:43:17', '1', null, null, null, '0', '女', null, null, null, null, '宁夏回族自治区 固原市 原州区');
+INSERT INTO `tb_user` VALUES ('1', 'ningzhi', '宁知', '123', '640402199512129999', '18829345027', '', '2019-04-19 16:05:23', '2019-04-19 16:05:34', '1', null, null, null, '0', '男', null, null, null, '2019-04-24 12:01:25', '宁夏回族自治区 固原市 原州区');
+INSERT INTO `tb_user` VALUES ('2', 'wangyu', '王玉', '123', '640402199412129999', null, null, '2019-04-23 10:43:14', '2019-04-23 10:43:17', '1', null, null, null, '0', '女', null, null, null, '2019-04-24 12:01:28', '宁夏回族自治区 固原市 原州区');
 INSERT INTO `tb_user` VALUES ('3', 'xiayu', '夏宇', '123', '640402199312129999', null, null, '2019-04-23 10:45:53', '2019-04-23 10:45:56', '1', null, null, null, '0', '男', null, null, null, null, '宁夏回族自治区 固原市 原州区');
 INSERT INTO `tb_user` VALUES ('4', 'lidong', '李冬', '123', '640402199212129999', null, null, '2019-04-23 10:47:56', '2019-04-23 10:47:59', '1', null, null, null, '0', '女', null, null, null, null, '宁夏回族自治区 固原市 原州区');
 

@@ -43,6 +43,21 @@ public class UserServiceImpl implements UserService {
         return userDao.findAll();
     }
 
+    @Override
+    public Long findSexMan() {
+        return userDao.findSexMan();
+    }
+
+    @Override
+    public Long findSexWoman() {
+        return userDao.findSexWoman();
+    }
+
+    @Override
+    public Long findTotalMan() {
+        return userDao.findTotalMan();
+    }
+
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

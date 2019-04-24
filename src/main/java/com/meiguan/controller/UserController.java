@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -43,5 +44,18 @@ public class UserController {
         return userService.findAll();
     }
 
+    @RequestMapping("/findSexMan")
+    public Long findSexMan(){
+        return userService.findSexMan();
+    }
+
+    @RequestMapping("/findSexWoman")
+    public Long findSexWoman(){
+        return userService.findSexWoman();
+    }
+    @RequestMapping("/findTotalMan")
+    public Long findTotalMan(){
+        return userService.findTotalMan();
+    }
 
 }

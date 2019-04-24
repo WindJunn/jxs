@@ -25,4 +25,12 @@ public interface UserDao {
     @Select("select * from tb_user")
     List<TbUser> findAll();
 
+    @Select("SELECT COUNT(*) FROM tb_user where sex = '男'")
+    Long findSexMan();
+
+    @Select("SELECT COUNT(*) FROM tb_user where sex = '女'")
+    Long findSexWoman();
+
+    @Select("SELECT COUNT(id) FROM tb_user")
+    Long findTotalMan();
 }

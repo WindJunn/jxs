@@ -17,5 +17,9 @@ public interface UserService {
 
     List<TbUser> findAll();
 
+    Long findSexMan();
 
+    Long findSexWoman();
+
+    Long findTotalMan();
 }
