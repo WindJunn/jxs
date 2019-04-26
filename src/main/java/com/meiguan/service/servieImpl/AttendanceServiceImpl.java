@@ -44,4 +44,6 @@ public class AttendanceServiceImpl implements AttendanceService {
     public List<UserAttendance> findNotAttendance() {
         return attendanceDao.findNotAttendance();
     }
+
+
 }

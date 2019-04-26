@@ -44,24 +44,17 @@
                 <div class="row">
                     <div class="col-lg-3 col-xs-6">
                         <!-- small box -->
-                        <div class="small-box bg-aqua">
-                            <div class="inner">
-                                <h3>1550</h3>
+                        <div class="" align="center">
+                            <div id="main2" style="height: 350px;width: 500px;"></div>
 
-                                <p>总人数</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-bag"></i>
-                            </div>
-                            <a href="all-order-manage-list.html" class="small-box-footer">详细 <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
 
                     <!-- ./col -->
-                    <div class="col-lg-3 col-xs-6" align="center">
+                    <div class="col-lg-3 col-xs-6" >
                         <!-- small box -->
-                        <div class="small-box">
-                        <div id="main1" style="height: 300px;"></div>
+                        <div class="" align="center">
+                        <div id="main1" style="height: 350px;width: 500px;"></div>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -112,6 +105,7 @@
    <script type="text/javascript">
        // 基于准备好的dom，初始化echarts图表
        var myChart = echarts.init(document.getElementById('main'));
+       var myChart1 = echarts.init(document.getElementById('main2'));
 
        var option = {
            tooltip: {
@@ -140,9 +134,9 @@
            ]
        };
 
-       var option1 = {
+       var option2 = {
            title : {
-               text: '固原市男女比例',
+               text: '固原市经济来源统计',
                subtext: '全市数据',
                x:'center'
            },
@@ -153,17 +147,19 @@
            legend: {
                orient: 'vertical',
                left: 'left',
-               data: ['男性','女性']
+               data: []
            },
            series : [
                {
-                   name: '访问来源',
+                   name: '人数',
                    type: 'pie',
-                   radius : '55%',
+                   radius : '65%',
                    center: ['50%', '60%'],
                    data:[
-                       {value:335, name:'男性'},
-                       {value:310, name:'女性'},
+                       {value:535, name:'务农'},
+                       {value:310, name:'务工'},
+                       {value:110, name:'经商'},
+                       {value:10, name:'低保'}
                    ],
                    itemStyle: {
                        emphasis: {
@@ -179,6 +175,7 @@
 
        // 为echarts对象加载数据
        myChart.setOption(option);
+       myChart1.setOption(option2);
    </script>
         <!-- 内容区域 /-->
 
@@ -207,7 +204,7 @@
                {
                    name: '人数',
                    type: 'pie',
-                   radius : '55%',
+                   radius : '65%',
                    center: ['50%', '60%'],
                    data:[
                        {value:335, name:'男性'},
