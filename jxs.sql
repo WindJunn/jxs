@@ -10,10 +10,52 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-04-24 17:22:16
+Date: 2019-04-30 17:54:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for tb_administrator
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_administrator`;
+CREATE TABLE `tb_administrator` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `pid` varchar(30) DEFAULT NULL,
+  `name` varchar(30) DEFAULT NULL,
+  `password` varchar(30) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `status` varchar(1) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL COMMENT '地址',
+  `create_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of tb_administrator
+-- ----------------------------
+INSERT INTO `tb_administrator` VALUES ('1', null, 'wuyu', '123', null, null, null, '2019-04-30 16:14:01', '2019-04-30 16:14:04');
+
+-- ----------------------------
+-- Table structure for tb_article
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_article`;
+CREATE TABLE `tb_article` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `author` varchar(255) DEFAULT NULL COMMENT '作者',
+  `add_time` datetime DEFAULT NULL COMMENT '添加时间',
+  `update_time` datetime DEFAULT NULL,
+  `article_contents` longtext COMMENT '文章内容',
+  `article_type` varchar(255) DEFAULT NULL COMMENT '文章类型  政策，文化，教育，农技，其他',
+  `state` varchar(255) DEFAULT NULL COMMENT '文章状态 审核通过，审核未通过，提交未审核',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of tb_article
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tb_attendance
@@ -36,6 +78,22 @@ INSERT INTO `tb_attendance` VALUES ('1', '1', '0', '2019-04-23 17:42:45');
 INSERT INTO `tb_attendance` VALUES ('2', '2', '0', '2019-04-23 17:43:03');
 INSERT INTO `tb_attendance` VALUES ('3', '3', '1', '2019-04-23 17:43:13');
 INSERT INTO `tb_attendance` VALUES ('4', '4', '0', '2019-04-23 17:43:19');
+
+-- ----------------------------
+-- Table structure for tb_comment
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_comment`;
+CREATE TABLE `tb_comment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `article_id` int(11) DEFAULT NULL,
+  `content` longtext COMMENT '评论内容',
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of tb_comment
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tb_role
@@ -67,6 +125,26 @@ INSERT INTO `tb_role` VALUES ('4', '县管理员', 'role_admin_county', '县管�
 INSERT INTO `tb_role` VALUES ('5', '市管理员', 'role_admin_city', '市管理员', '0', 'admin', '2019-02-25 13:41:27', 'admin', '2019-03-06 13:47:31', '0', 'EXAM', '0');
 INSERT INTO `tb_role` VALUES ('6', '超级管理员', 'role_admin', '超级管理员', '0', 'admin', '2019-02-25 13:41:27', 'admin', '2019-03-06 13:47:31', '0', 'EXAM', '0');
 INSERT INTO `tb_role` VALUES ('7', '教师', 'role_teacher', '教师', '0', 'admin', '2019-02-25 13:42:29', 'admin', '2019-02-25 13:42:29', '0', 'EXAM', '0');
+
+-- ----------------------------
+-- Table structure for tb_schedule
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_schedule`;
+CREATE TABLE `tb_schedule` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL COMMENT '用户id',
+  `name` varchar(255) DEFAULT NULL COMMENT '教员姓名',
+  `teaching_time` datetime DEFAULT NULL COMMENT '授课时间',
+  `teaching_site` varchar(255) DEFAULT NULL COMMENT '授课地点',
+  `teaching_theme` varchar(255) DEFAULT NULL COMMENT '授课主题',
+  `teaching_state` varchar(255) DEFAULT NULL COMMENT '授课状态 1.已授课 2.未授课',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of tb_schedule
+-- ----------------------------
+INSERT INTO `tb_schedule` VALUES ('1', '1', null, '2019-04-29 16:00:00', '大池村', '水稻防虫', '1');
 
 -- ----------------------------
 -- Table structure for tb_towns
@@ -109,7 +187,6 @@ CREATE TABLE `tb_user` (
   `password` varchar(32) NOT NULL COMMENT '密码，加密存储',
   `pid` varchar(32) NOT NULL COMMENT '身份证号',
   `phone` varchar(20) DEFAULT NULL COMMENT '注册手机号',
-  `email` varchar(50) DEFAULT NULL COMMENT '注册邮箱',
   `created` datetime NOT NULL COMMENT '创建时间',
   `updated` datetime NOT NULL,
   `health` varchar(1) DEFAULT '1' COMMENT '健康状态（0死亡 1健康 2一般 3病重 4残疾）',
@@ -119,7 +196,6 @@ CREATE TABLE `tb_user` (
   `is_mobile_check` varchar(1) DEFAULT '0' COMMENT '手机是否验证 （0否  1是）',
   `sex` varchar(1) DEFAULT '0' COMMENT '性别，1男，2女',
   `user_level` int(11) DEFAULT NULL COMMENT '会员等级',
-  `points` int(11) DEFAULT NULL COMMENT '积分',
   `birthday` datetime DEFAULT NULL COMMENT '生日',
   `last_login_time` datetime DEFAULT NULL COMMENT '最后登录时间',
   `address` varchar(255) DEFAULT NULL COMMENT '地址',
@@ -130,10 +206,10 @@ CREATE TABLE `tb_user` (
 -- ----------------------------
 -- Records of tb_user
 -- ----------------------------
-INSERT INTO `tb_user` VALUES ('1', 'ningzhi', '宁知', '123', '640402199512129999', '18829345027', '', '2019-04-19 16:05:23', '2019-04-19 16:05:34', '1', null, null, null, '0', '男', null, null, null, '2019-04-24 12:01:25', '宁夏回族自治区 固原市 原州区');
-INSERT INTO `tb_user` VALUES ('2', 'wangyu', '王玉', '123', '640402199412129999', null, null, '2019-04-23 10:43:14', '2019-04-23 10:43:17', '1', null, null, null, '0', '女', null, null, null, '2019-04-24 12:01:28', '宁夏回族自治区 固原市 原州区');
-INSERT INTO `tb_user` VALUES ('3', 'xiayu', '夏宇', '123', '640402199312129999', null, null, '2019-04-23 10:45:53', '2019-04-23 10:45:56', '1', null, null, null, '0', '男', null, null, null, null, '宁夏回族自治区 固原市 原州区');
-INSERT INTO `tb_user` VALUES ('4', 'lidong', '李冬', '123', '640402199212129999', null, null, '2019-04-23 10:47:56', '2019-04-23 10:47:59', '1', null, null, null, '0', '女', null, null, null, null, '宁夏回族自治区 固原市 原州区');
+INSERT INTO `tb_user` VALUES ('1', 'ningzhi', '宁知', '123', '640402199512129999', '18829345027', '2019-04-19 16:05:23', '2019-04-19 16:05:34', '1', null, null, null, '0', '男', null, null, '2019-04-24 12:01:25', '宁夏回族自治区 固原市 原州区');
+INSERT INTO `tb_user` VALUES ('2', 'wangyu', '王玉', '123', '640402199412129999', null, '2019-04-23 10:43:14', '2019-04-23 10:43:17', '1', null, null, null, '0', '女', null, null, '2019-04-24 12:01:28', '宁夏回族自治区 固原市 原州区');
+INSERT INTO `tb_user` VALUES ('3', 'xiayu', '夏宇', '123', '640402199312129999', null, '2019-04-23 10:45:53', '2019-04-23 10:45:56', '1', null, null, null, '0', '男', null, null, null, '宁夏回族自治区 固原市 原州区');
+INSERT INTO `tb_user` VALUES ('4', 'lidong', '李冬', '123', '640402199212129999', null, '2019-04-23 10:47:56', '2019-04-23 10:47:59', '1', null, null, null, '0', '女', null, null, null, '宁夏回族自治区 固原市 原州区');
 
 -- ----------------------------
 -- Table structure for tb_user_role
@@ -148,6 +224,26 @@ CREATE TABLE `tb_user_role` (
 
 -- ----------------------------
 -- Records of tb_user_role
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for tb_vedio
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_vedio`;
+CREATE TABLE `tb_vedio` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '标题',
+  `title` varchar(255) DEFAULT NULL,
+  `author` varchar(255) DEFAULT NULL COMMENT '作者',
+  `add_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `video_url` varchar(255) DEFAULT NULL COMMENT '视频地址',
+  `type` varchar(255) DEFAULT NULL COMMENT '视频类型  政策，文化，教育，农技，其他',
+  `state` varchar(255) DEFAULT NULL COMMENT '视频状态 审核通过，审核未通过，提交未审核',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of tb_vedio
 -- ----------------------------
 
 -- ----------------------------

@@ -21,7 +21,6 @@ public class TbUser implements Serializable {
     private String password;
     private String pid;
     private String phone;
-    private String email;
     private Date created;
     private Date updated;
     private String health;
