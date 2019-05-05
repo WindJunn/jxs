@@ -1,7 +1,7 @@
 package com.meiguan.controller;
 
 
-import com.meiguan.domain.UserAttendance;
+import com.meiguan.pojo.UserAttendance;
 import com.meiguan.service.AttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

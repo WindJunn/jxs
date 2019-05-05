@@ -1,6 +1,6 @@
 package com.meiguan.dao;
 
-import com.meiguan.pojo.User;
+import com.meiguan.pojo.Schedule;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  * @author Administrator
  *
  */
-public interface UserDao extends JpaRepository<User,String>, JpaSpecificationExecutor<User> {
+public interface ScheduleDao extends JpaRepository<Schedule,String>, JpaSpecificationExecutor<Schedule> {
 	
 }

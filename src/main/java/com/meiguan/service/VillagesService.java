@@ -1,7 +1,7 @@
 package com.meiguan.service;
 
-import com.meiguan.dao.AttendanceDao;
-import com.meiguan.pojo.Attendance;
+import com.meiguan.dao.VillagesDao;
+import com.meiguan.pojo.Villages;
 import com.meiguan.utils.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,17 +24,17 @@ import java.util.Map;
  *
  */
 @Service
-public class AttendanceService {
+public class VillagesService {
 
 	@Autowired
-	private AttendanceDao attendanceDao;
+	private VillagesDao villagesDao;
 	
 	@Autowired
 	private IdWorker idWorker;
 
-	public List<Attendance> findAll() {
+	public List<Villages> findAll() {
 
-		return attendanceDao.findAll();
+		return villagesDao.findAll();
 	}
 
 	/**
@@ -44,18 +44,22 @@ public class AttendanceService {
 	 * @param size
 	 * @return
 	 */
-	public Page<Attendance> findPage(int page, int size) {
+	public Page<Villages> findPage(int page, int size) {
 		PageRequest pageRequest = new PageRequest(page-1, size);
-		return attendanceDao.findAll(pageRequest);
+		return villagesDao.findAll(pageRequest);
 	}
 
-	private Specification<Attendance> where(Map searchMap) {
+	private Specification<Villages> where(Map searchMap) {
 		
-		return new Specification<Attendance>() {
+		return new Specification<Villages>() {
           
 			@Override
-			public Predicate toPredicate(Root<Attendance> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			public Predicate toPredicate(Root<Villages> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				List<Predicate> predicateList = new ArrayList<Predicate>();
+                // 
+                if (searchMap.get("name")!=null && !"".equals(searchMap.get("name"))) {
+                	predicateList.add(cb.like(root.get("name").as(String.class), "%"+ searchMap.get("name") +"%"));
+                }
 
                 return cb.and( predicateList.toArray(new Predicate[predicateList.size()]));
                 
@@ -64,32 +68,32 @@ public class AttendanceService {
 		
 	}
 
-	public Page<Attendance> findSearch(Map whereMap, int page, int size) {
-		Specification<Attendance> specification = where(whereMap);
+	public Page<Villages> findSearch(Map whereMap, int page, int size) {
+		Specification<Villages> specification = where(whereMap);
 		PageRequest pageRequest = new PageRequest(page-1, size);
-		return attendanceDao.findAll(specification, pageRequest);
+		return villagesDao.findAll(specification, pageRequest);
 	}
 
-	public Attendance findOne(String id) {
-		return attendanceDao.findOne(id);
+	public Villages findOne(String id) {
+		return villagesDao.findOne(id);
 	}
 
-	public void add(Attendance attendance) {
-		attendance.setId(idWorker.nextId()+""); //主键值
-		attendanceDao.save(attendance);
+	public void add(Villages villages) {
+		villages.setId(idWorker.nextId()+""); //主键值
+		villagesDao.save(villages);
 	}
 	
-	public void update(Attendance attendance) {
-		attendanceDao.save(attendance);
+	public void update(Villages villages) {
+		villagesDao.save(villages);
 	}
 
 	public void delete(String id) {
-		attendanceDao.delete(id);
+		villagesDao.delete(id);
 	}
 
 	public void deleteList(String[] ids) {
 		for (String id : ids) {
-			attendanceDao.delete(id);
+			villagesDao.delete(id);
 		}
 	}
 

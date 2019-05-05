@@ -1,6 +1,6 @@
 package com.meiguan.dao;
 
-import com.meiguan.pojo.User;
+import com.meiguan.pojo.Vedio;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  * @author Administrator
  *
  */
-public interface UserDao extends JpaRepository<User,String>, JpaSpecificationExecutor<User> {
+public interface VedioDao extends JpaRepository<Vedio,String>, JpaSpecificationExecutor<Vedio> {
 	
 }

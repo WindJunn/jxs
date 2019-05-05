@@ -1,7 +1,7 @@
 package com.meiguan.controller;
 
-import com.meiguan.pojo.User;
-import com.meiguan.service.UserService;
+import com.meiguan.pojo.Villages;
+import com.meiguan.service.VillagesService;
 import com.meiguan.utils.PageResult;
 import com.meiguan.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +17,11 @@ import java.util.Map;
  */
 @RestController
 @CrossOrigin
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/villages")
+public class VillagesController {
 
 	@Autowired
-	private UserService userService;
+	private VillagesService villagesService;
 	
 	/**
 	 * 查询全部数据
@@ -29,7 +29,7 @@ public class UserController {
 	 */
 	@RequestMapping(value="/",method= RequestMethod.GET)
 	public Result findAll(){
-		return new Result(true,1000,"查询成功",userService.findAll());
+		return new Result(true,1000,"查询成功",villagesService.findAll());
 	}
 	
 	/**
@@ -39,7 +39,7 @@ public class UserController {
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.GET)
 	public Result findOne(@PathVariable String id){
-		return new Result(true,1000,"查询成功",userService.findOne(id));
+		return new Result(true,1000,"查询成功",villagesService.findOne(id));
 	}
 	
 	/**
@@ -50,8 +50,8 @@ public class UserController {
 	 */
 	@RequestMapping(value="/{page}/{size}",method= RequestMethod.GET)
 	public Result findPage(@PathVariable int page, @PathVariable int size){
-		Page<User> pageList = userService.findPage(page, size);
-		return new Result(true,1000,"查询成功",new PageResult<User>(pageList.getTotalElements(), pageList.getContent() ) );
+		Page<Villages> pageList = villagesService.findPage(page, size);
+		return new Result(true,1000,"查询成功",new PageResult<Villages>(pageList.getTotalElements(), pageList.getContent() ) );
 	}
 	
 	/**
@@ -63,28 +63,28 @@ public class UserController {
 	 */
 	@RequestMapping(value="/{page}/{size}",method= RequestMethod.POST)
 	public Result findSearch(@RequestBody Map searchMap , @PathVariable int page, @PathVariable int size){
-		Page<User> pageList = userService.findSearch(searchMap, page, size);
-		return  new Result(true,1000,"查询成功",  new PageResult<User>(pageList.getTotalElements(), pageList.getContent()) );		
+		Page<Villages> pageList = villagesService.findSearch(searchMap, page, size);
+		return  new Result(true,1000,"查询成功",  new PageResult<Villages>(pageList.getTotalElements(), pageList.getContent()) );		
 	}
 	
 	/**
 	 * 增加
-	 * @param user
+	 * @param villages
 	 */
 	@RequestMapping(value="/",method= RequestMethod.POST)
-	public Result add(@RequestBody User user  ){
-		userService.add(user);			
+	public Result add(@RequestBody Villages villages  ){
+		villagesService.add(villages);			
 		return new Result(true,1000,"增加成功");
 	}
 	
 	/**
 	 * 修改
-	 * @param user
+	 * @param villages
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.PUT)
-	public Result update(@RequestBody User user, @PathVariable Long id ){
-		user.setId(id);
-		userService.update(user);		
+	public Result update(@RequestBody Villages villages, @PathVariable Long id ){
+		villages.setId(id);
+		villagesService.update(villages);		
 		return new Result(true,1000,"修改成功");
 	}
 	
@@ -94,7 +94,7 @@ public class UserController {
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.DELETE)
 	public Result delete(@PathVariable String id ){
-		userService.delete(id);
+		villagesService.delete(id);
 		return new Result(true,1000,"删除成功");
 	}
 	

@@ -14096,9 +14096,8 @@ function otherDimToDataDim (data, otherDim) {
                 : formattedValue
             )
         : colorEl + seriesName + formattedValue;
-});;
-
-/***/ }),
+        });
+        /***/ }),
 /* 40 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -17267,7 +17266,7 @@ var Renderer = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
             }
 
             if (uniformValue == null) {
-                continue;
+
             }
             else if (isTexture) {
                 if (uniformValue.__slot < 0) {
@@ -24641,7 +24640,7 @@ ZRTextureAtlasSurfaceNode.prototype = {
         el.scale = [scaleX, scaleY];
         el.update();
     }
-}
+};
 /**
  * constructor
  * @alias module:echarts-gl/util/ZRTextureAtlasSurface
@@ -25568,10 +25567,10 @@ function _trim(str) {
   return str.replace(/^\s+/, '').replace(/\s+$/, '');
 }
 /**
- * Linear mapping a value from domain to range
+ * Linear mapping a value from pojo to range
  * @memberOf module:echarts/util/number
  * @param  {(number|Array.<number>)} val
- * @param  {Array.<number>} domain Domain extent domain[0] can be bigger than domain[1]
+ * @param  {Array.<number>} domain Domain extent pojo[0] can be bigger than pojo[1]
  * @param  {Array.<number>} range  Range extent range[0] can be bigger than range[1]
  * @param  {boolean} clamp
  * @return {(number|Array.<number>}
@@ -27172,7 +27171,7 @@ MapServiceCoordSys3D.prototype = {
             return;
         }
 
-        var altitudeDataExtent = [Infinity, -Infinity]
+        var altitudeDataExtent = [Infinity, -Infinity];
 
         ecModel.eachSeries(function (seriesModel) {
             if (seriesModel.coordinateSystem !== this) {
@@ -29411,7 +29410,7 @@ colorUtil.parse = function (colorStr, rgbaArr) {
     }
 
     setRgba(rgbaArr, 0, 0, 0, 1);
-    return;
+
 };
 
 colorUtil.parseToFloat = function (colorStr, rgbaArr) {
@@ -29423,7 +29422,7 @@ colorUtil.parseToFloat = function (colorStr, rgbaArr) {
     rgbaArr[1] /= 255;
     rgbaArr[2] /= 255;
     return rgbaArr;
-}
+};
 
 /**
  * @name clay.core.color.hsla2rgba
@@ -29541,7 +29540,7 @@ colorUtil.lift = function (color, level) {
         }
         return colorUtil.stringify(colorArr, colorArr.length === 4 ? 'rgba' : 'rgb');
     }
-}
+};
 
 /**
  * @name clay.core.color.toHex
@@ -29584,7 +29583,7 @@ colorUtil.fastLerp = function (normalizedValue, colors, out) {
     out[3] = clampCssFloat(lerpNumber(leftColor[3], rightColor[3], dv));
 
     return out;
-}
+};
 
 colorUtil.fastMapToColor = colorUtil.fastLerp;
 
@@ -29627,7 +29626,7 @@ colorUtil.lerp = function (normalizedValue, colors, fullOutput) {
             value: value
         }
         : color;
-}
+};
 
 /**
  * @deprecated
@@ -29653,7 +29652,7 @@ colorUtil.modifyHSL = function (color, h, s, l) {
 
         return colorUtil.stringify(hsla2rgba(color), 'rgba');
     }
-}
+};
 
 /**
  * @param {string} color
@@ -29667,7 +29666,7 @@ colorUtil.modifyAlpha = function (color, alpha) {
         color[3] = clampCssFloat(alpha);
         return colorUtil.stringify(color, 'rgba');
     }
-}
+};
 
 /**
  * @param {Array.<number>} arrColor like [12,33,44,0.4]
@@ -36221,7 +36220,7 @@ function parse(colorStr, rgbaArr) {
   }
 
   setRgba(rgbaArr, 0, 0, 0, 1);
-  return;
+
 }
 /**
  * @param {Array.<number>} hsla
@@ -36614,9 +36613,8 @@ function removeTextStyleInAxis(axesOpt) {
     removeTextStyleInAxis(option.grid3D);
 
     convertNormalEmphasis(option.geo3D);
-});;
-
-/***/ }),
+        });
+        /***/ }),
 /* 154 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -36785,9 +36783,8 @@ var AXIS_TYPES = ['value', 'category', 'time', 'log'];
         dim + 'Axis3D',
         __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.curry(axisTypeDefaulter, dim)
     );
-});;
-
-/***/ }),
+        });
+        /***/ }),
 /* 157 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -38532,7 +38529,7 @@ var SpritesGeometry = __WEBPACK_IMPORTED_MODULE_1_claygl_src_Geometry__["a" /* d
         var vertexOffset = this._vertexOffset;
         this.setSprite(
             this._vertexOffset / 4, position, size, coords, align, verticalAlign, screenMargin
-        )
+        );
         for (var i = 0; i < squareTriangles.length; i++) {
             this.indices[this._faceOffset * 3 + i] = squareTriangles[i] + vertexOffset;
         }
@@ -41016,7 +41013,7 @@ var commonOutputs = {
             }
         }
     }
-}
+};
 
 var FINAL_NODES_CHAIN = ['composite', 'FXAA'];
 
@@ -42776,7 +42773,7 @@ SSAOPass.prototype.update = function (renderer, camera, frame) {
 
 SSAOPass.prototype.getTargetTexture = function () {
     return this._blurTexture2;
-}
+};
 
 SSAOPass.prototype.setParameter = function (name, val) {
     if (name === 'noiseTexSize') {
@@ -43337,7 +43334,7 @@ NormalPass.prototype.renderDebug = function (renderer) {
 NormalPass.prototype.dispose = function (renderer) {
     this._depthTex.dispose(renderer);
     this._normalTex.dispose(renderer);
-}
+};
 
 /* harmony default export */ __webpack_exports__["a"] = (NormalPass);
 
@@ -45515,7 +45512,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.merge(GlobeMode
             if (texture) {
                 texture.flipY = false;
             }
-        })
+        });
 
         earthMesh.material.set('color', __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__["a" /* default */].parseColor(
             globeModel.get('baseColor')
@@ -45986,7 +45983,7 @@ function resizeGlobe(globeModel, api) {
 
 function updateGlobe(ecModel, api) {
 
-    var altitudeDataExtent = [Infinity, -Infinity]
+    var altitudeDataExtent = [Infinity, -Infinity];
 
     ecModel.eachSeries(function (seriesModel) {
         if (seriesModel.coordinateSystem !== this) {
@@ -46855,7 +46852,7 @@ __WEBPACK_IMPORTED_MODULE_3__util_graphicGL__["a" /* default */].Shader.import(_
             if (!baseLayer) {
                 baseLayer = new maptalks.TileLayer('maptalks-echarts-gl-baselayer', {
                     urlTemplate: urlTemplate,
-                    // used sequentially to help with browser parallel requests per domain limitation
+                    // used sequentially to help with browser parallel requests per pojo limitation
                     subdomains: ['a', 'b', 'c'],
                     attribution: maptalks3DModel.get('attribution')
                 });
@@ -47282,9 +47279,8 @@ function ifCrossZero(extent) {
     var min = extent[0];
     var max = extent[1];
     return !((min > 0 && max > 0) || (min < 0 && max < 0));
-};
-
-function cartesian3DLayout(seriesModel, coordSys) {
+}
+        function cartesian3DLayout(seriesModel, coordSys) {
 
     var data = seriesModel.getData();
     // var barOnPlane = seriesModel.get('onGridPlane');
@@ -47383,9 +47379,8 @@ function cartesian3DLayout(seriesModel, coordSys) {
         }
     }
     return filledCount / tmp.length;
-});;
-
-/***/ }),
+        });
+        /***/ }),
 /* 229 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -49950,7 +49945,7 @@ __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__["a" /* default */].Shader.import(_
 
             var vertexCount = isPolyline
                 ? lines3DGeometry.getPolylineVertexCount(pts)
-                : lines3DGeometry.getCubicCurveVertexCount(pts[0], pts[1], pts[2], pts[3])
+                : lines3DGeometry.getCubicCurveVertexCount(pts[0], pts[1], pts[2], pts[3]);
 
             var dist = 0;
             var pos = [];
@@ -50389,7 +50384,7 @@ var SurfaceSeries = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.
                         if (true) {
                             console.error('Invalid equation.%s', dim);
                         }
-                        return;
+
                     }
                 });
                 if (typeof equation.z !== 'function') {
@@ -50429,7 +50424,7 @@ var SurfaceSeries = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.
                         if (true) {
                             console.error('Invalid parametricEquation.%s', dim);
                         }
-                        return;
+
                     }
                 });
                 ['x', 'y', 'z'].forEach(function (dim) {
@@ -50437,7 +50432,7 @@ var SurfaceSeries = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.
                         if (true) {
                             console.error('parametricEquation.%s needs to be function', dim);
                         }
-                        return;
+
                     }
                 });
 
@@ -52145,9 +52140,8 @@ var GraphSeries = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.ex
     graph.update();
 
     return graph;
-});;
-
-/***/ }),
+        });
+        /***/ }),
 /* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -52799,7 +52793,7 @@ function enableClassExtend(RootClass, mandatoryMethods) {
 var classBase = 0;
 /**
  * Can not use instanceof, consider different scope by
- * cross domain or es module import in ec extensions.
+ * cross pojo or es module import in ec extensions.
  * Mount a method "isInstance()" to Clz.
  */
 
@@ -54729,7 +54723,7 @@ function forceAtlas2Worker() {
             out[1] = y;
             return out;
         }
-    }
+    };
 
     /****************************
      * Class: Region
@@ -55010,7 +55004,7 @@ function forceAtlas2Worker() {
 
             this.edges.push(edge);
         }
-    }
+    };
 
     forceAtlas2Proto.updateSettings = function() {
         if (this.repulsionByDegree) {
@@ -55267,7 +55261,7 @@ function forceAtlas2Worker() {
 
     forceAtlas2Proto.getGlobalSpeed = function () {
         return this._globalSpeed;
-    }
+    };
 
     /****************************
      * Main process

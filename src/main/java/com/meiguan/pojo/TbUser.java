@@ -1,4 +1,4 @@
-package com.meiguan.domain;
+package com.meiguan.pojo;
 
 import lombok.Builder;
 import lombok.Data;

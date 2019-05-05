@@ -1,7 +1,7 @@
 package com.meiguan.controller;
 
-import com.meiguan.pojo.User;
-import com.meiguan.service.UserService;
+import com.meiguan.pojo.Role;
+import com.meiguan.service.RoleService;
 import com.meiguan.utils.PageResult;
 import com.meiguan.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +17,11 @@ import java.util.Map;
  */
 @RestController
 @CrossOrigin
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/role")
+public class RoleController {
 
 	@Autowired
-	private UserService userService;
+	private RoleService roleService;
 	
 	/**
 	 * 查询全部数据
@@ -29,7 +29,7 @@ public class UserController {
 	 */
 	@RequestMapping(value="/",method= RequestMethod.GET)
 	public Result findAll(){
-		return new Result(true,1000,"查询成功",userService.findAll());
+		return new Result(true,1000,"查询成功",roleService.findAll());
 	}
 	
 	/**
@@ -39,7 +39,7 @@ public class UserController {
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.GET)
 	public Result findOne(@PathVariable String id){
-		return new Result(true,1000,"查询成功",userService.findOne(id));
+		return new Result(true,1000,"查询成功",roleService.findOne(id));
 	}
 	
 	/**
@@ -50,8 +50,8 @@ public class UserController {
 	 */
 	@RequestMapping(value="/{page}/{size}",method= RequestMethod.GET)
 	public Result findPage(@PathVariable int page, @PathVariable int size){
-		Page<User> pageList = userService.findPage(page, size);
-		return new Result(true,1000,"查询成功",new PageResult<User>(pageList.getTotalElements(), pageList.getContent() ) );
+		Page<Role> pageList = roleService.findPage(page, size);
+		return new Result(true,1000,"查询成功",new PageResult<Role>(pageList.getTotalElements(), pageList.getContent() ) );
 	}
 	
 	/**
@@ -63,28 +63,28 @@ public class UserController {
 	 */
 	@RequestMapping(value="/{page}/{size}",method= RequestMethod.POST)
 	public Result findSearch(@RequestBody Map searchMap , @PathVariable int page, @PathVariable int size){
-		Page<User> pageList = userService.findSearch(searchMap, page, size);
-		return  new Result(true,1000,"查询成功",  new PageResult<User>(pageList.getTotalElements(), pageList.getContent()) );		
+		Page<Role> pageList = roleService.findSearch(searchMap, page, size);
+		return  new Result(true,1000,"查询成功",  new PageResult<Role>(pageList.getTotalElements(), pageList.getContent()) );		
 	}
 	
 	/**
 	 * 增加
-	 * @param user
+	 * @param role
 	 */
 	@RequestMapping(value="/",method= RequestMethod.POST)
-	public Result add(@RequestBody User user  ){
-		userService.add(user);			
+	public Result add(@RequestBody Role role  ){
+		roleService.add(role);			
 		return new Result(true,1000,"增加成功");
 	}
 	
 	/**
 	 * 修改
-	 * @param user
+	 * @param role
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.PUT)
-	public Result update(@RequestBody User user, @PathVariable Long id ){
-		user.setId(id);
-		userService.update(user);		
+	public Result update(@RequestBody Role role, @PathVariable String id ){
+		role.setId(id);
+		roleService.update(role);		
 		return new Result(true,1000,"修改成功");
 	}
 	
@@ -94,7 +94,7 @@ public class UserController {
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.DELETE)
 	public Result delete(@PathVariable String id ){
-		userService.delete(id);
+		roleService.delete(id);
 		return new Result(true,1000,"删除成功");
 	}
 	

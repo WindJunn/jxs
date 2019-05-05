@@ -1,7 +1,7 @@
 package com.meiguan.service;
 
-import com.meiguan.dao.AttendanceDao;
-import com.meiguan.pojo.Attendance;
+import com.meiguan.dao.CommentDao;
+import com.meiguan.pojo.Comment;
 import com.meiguan.utils.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,17 +24,17 @@ import java.util.Map;
  *
  */
 @Service
-public class AttendanceService {
+public class CommentService {
 
 	@Autowired
-	private AttendanceDao attendanceDao;
+	private CommentDao commentDao;
 	
 	@Autowired
 	private IdWorker idWorker;
 
-	public List<Attendance> findAll() {
+	public List<Comment> findAll() {
 
-		return attendanceDao.findAll();
+		return commentDao.findAll();
 	}
 
 	/**
@@ -44,17 +44,17 @@ public class AttendanceService {
 	 * @param size
 	 * @return
 	 */
-	public Page<Attendance> findPage(int page, int size) {
+	public Page<Comment> findPage(int page, int size) {
 		PageRequest pageRequest = new PageRequest(page-1, size);
-		return attendanceDao.findAll(pageRequest);
+		return commentDao.findAll(pageRequest);
 	}
 
-	private Specification<Attendance> where(Map searchMap) {
+	private Specification<Comment> where(Map searchMap) {
 		
-		return new Specification<Attendance>() {
+		return new Specification<Comment>() {
           
 			@Override
-			public Predicate toPredicate(Root<Attendance> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			public Predicate toPredicate(Root<Comment> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				List<Predicate> predicateList = new ArrayList<Predicate>();
 
                 return cb.and( predicateList.toArray(new Predicate[predicateList.size()]));
@@ -64,32 +64,32 @@ public class AttendanceService {
 		
 	}
 
-	public Page<Attendance> findSearch(Map whereMap, int page, int size) {
-		Specification<Attendance> specification = where(whereMap);
+	public Page<Comment> findSearch(Map whereMap, int page, int size) {
+		Specification<Comment> specification = where(whereMap);
 		PageRequest pageRequest = new PageRequest(page-1, size);
-		return attendanceDao.findAll(specification, pageRequest);
+		return commentDao.findAll(specification, pageRequest);
 	}
 
-	public Attendance findOne(String id) {
-		return attendanceDao.findOne(id);
+	public Comment findOne(String id) {
+		return commentDao.findOne(id);
 	}
 
-	public void add(Attendance attendance) {
-		attendance.setId(idWorker.nextId()+""); //主键值
-		attendanceDao.save(attendance);
+	public void add(Comment comment) {
+		comment.setId(idWorker.nextId()+""); //主键值
+		commentDao.save(comment);
 	}
 	
-	public void update(Attendance attendance) {
-		attendanceDao.save(attendance);
+	public void update(Comment comment) {
+		commentDao.save(comment);
 	}
 
 	public void delete(String id) {
-		attendanceDao.delete(id);
+		commentDao.delete(id);
 	}
 
 	public void deleteList(String[] ids) {
 		for (String id : ids) {
-			attendanceDao.delete(id);
+			commentDao.delete(id);
 		}
 	}
 
