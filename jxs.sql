@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-04-30 17:54:27
+Date: 2019-05-05 18:22:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,7 +22,8 @@ DROP TABLE IF EXISTS `tb_administrator`;
 CREATE TABLE `tb_administrator` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `pid` varchar(30) DEFAULT NULL,
-  `name` varchar(30) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `username` varchar(30) DEFAULT NULL,
   `password` varchar(30) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `status` varchar(1) DEFAULT NULL,
@@ -35,14 +36,14 @@ CREATE TABLE `tb_administrator` (
 -- ----------------------------
 -- Records of tb_administrator
 -- ----------------------------
-INSERT INTO `tb_administrator` VALUES ('1', null, 'wuyu', '123', null, null, null, '2019-04-30 16:14:01', '2019-04-30 16:14:04');
+INSERT INTO `tb_administrator` VALUES ('1', null, '无语', 'wuyu', '123', null, null, null, '2019-04-30 16:14:01', '2019-04-30 16:14:04');
 
 -- ----------------------------
 -- Table structure for tb_article
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_article`;
 CREATE TABLE `tb_article` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `author` varchar(255) DEFAULT NULL COMMENT '作者',
   `add_time` datetime DEFAULT NULL COMMENT '添加时间',
@@ -62,7 +63,7 @@ CREATE TABLE `tb_article` (
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_attendance`;
 CREATE TABLE `tb_attendance` (
-  `id` int(30) NOT NULL AUTO_INCREMENT COMMENT '用户id',
+  `id` bigint(30) NOT NULL AUTO_INCREMENT COMMENT '用户id',
   `user_id` bigint(30) DEFAULT NULL,
   `state` int(1) DEFAULT NULL COMMENT '0 出勤 1 请假 2 公差 3 迟到 4 早退 5 旷课',
   `attendance_time` datetime DEFAULT NULL COMMENT '考勤时间',
@@ -84,7 +85,7 @@ INSERT INTO `tb_attendance` VALUES ('4', '4', '0', '2019-04-23 17:43:19');
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_comment`;
 CREATE TABLE `tb_comment` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `article_id` int(11) DEFAULT NULL,
   `content` longtext COMMENT '评论内容',
   `user_id` int(11) DEFAULT NULL,
@@ -100,7 +101,7 @@ CREATE TABLE `tb_comment` (
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_role`;
 CREATE TABLE `tb_role` (
-  `id` varchar(64) NOT NULL COMMENT '主键ID',
+  `id` bigint(64) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `role_name` varchar(255) DEFAULT NULL COMMENT '角色名称',
   `role_code` varchar(255) DEFAULT NULL COMMENT '角色编号',
   `role_desc` varchar(255) DEFAULT NULL COMMENT '角色描述',
@@ -113,7 +114,7 @@ CREATE TABLE `tb_role` (
   `application_code` varchar(64) DEFAULT NULL COMMENT '系统编号',
   `status` varchar(20) NOT NULL COMMENT '状态 0-启用，1-禁用',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of tb_role
@@ -131,7 +132,7 @@ INSERT INTO `tb_role` VALUES ('7', '教师', 'role_teacher', '教师', '0', 'adm
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_schedule`;
 CREATE TABLE `tb_schedule` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL COMMENT '用户id',
   `name` varchar(255) DEFAULT NULL COMMENT '教员姓名',
   `teaching_time` datetime DEFAULT NULL COMMENT '授课时间',
@@ -216,7 +217,7 @@ INSERT INTO `tb_user` VALUES ('4', 'lidong', '李冬', '123', '64040219921212999
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_user_role`;
 CREATE TABLE `tb_user_role` (
-  `id` varchar(64) NOT NULL,
+  `id` bigint(64) NOT NULL,
   `user_id` varchar(64) DEFAULT NULL,
   `role_id` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
@@ -231,7 +232,7 @@ CREATE TABLE `tb_user_role` (
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_vedio`;
 CREATE TABLE `tb_vedio` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '标题',
+  `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '标题',
   `title` varchar(255) DEFAULT NULL,
   `author` varchar(255) DEFAULT NULL COMMENT '作者',
   `add_time` datetime DEFAULT NULL,
