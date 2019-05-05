@@ -1,6 +1,6 @@
 package com.meiguan.controller;
 
-import entity.Result;
+import com.meiguan.utils.Result;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

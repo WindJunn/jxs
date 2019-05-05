@@ -2,8 +2,8 @@ package com.meiguan.controller;
 
 import com.meiguan.pojo.UserRole;
 import com.meiguan.service.UserRoleService;
-import entity.PageResult;
-import entity.Result;
+import com.meiguan.utils.PageResult;
+import com.meiguan.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -51,7 +51,7 @@ public class UserRoleController {
 	@RequestMapping(value="/{page}/{size}",method= RequestMethod.GET)
 	public Result findPage(@PathVariable int page, @PathVariable int size){
 		Page<UserRole> pageList = userRoleService.findPage(page, size);
-		return new Result(true,1000,"查询成功",new PageResult<UserRole>(pageList.getTotalElements(), pageList.getContent() ) );	
+		return new Result(true,1000,"查询成功",new PageResult<UserRole>(pageList.getTotalElements(), pageList.getContent() ) );
 	}
 	
 	/**

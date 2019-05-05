@@ -2,6 +2,7 @@ package com.meiguan.service;
 
 import com.meiguan.dao.UserDao;
 import com.meiguan.pojo.User;
+import com.meiguan.utils.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

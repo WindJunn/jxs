@@ -1,5 +1,10 @@
 package com.meiguan.pojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,6 +14,10 @@ import javax.persistence.Table;
  * @author Administrator
  *
  */
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="tb_villages")
 public class Villages {
@@ -22,26 +31,6 @@ public class Villages {
 	private Integer town_id;//
 
 	
-	public Long getId() {		
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {		
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Integer getTown_id() {		
-		return town_id;
-	}
-	public void setTown_id(Integer town_id) {
-		this.town_id = town_id;
-	}
 
 
 	
