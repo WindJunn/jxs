@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-05-05 18:22:39
+Date: 2019-05-06 17:36:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,7 +20,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_administrator`;
 CREATE TABLE `tb_administrator` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` varchar(50) NOT NULL,
   `pid` varchar(30) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `username` varchar(30) DEFAULT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE `tb_administrator` (
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of tb_administrator
@@ -43,7 +43,7 @@ INSERT INTO `tb_administrator` VALUES ('1', null, '无语', 'wuyu', '123', null,
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_article`;
 CREATE TABLE `tb_article` (
-  `id` bigint(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(50) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `author` varchar(255) DEFAULT NULL COMMENT '作者',
   `add_time` datetime DEFAULT NULL COMMENT '添加时间',
@@ -63,32 +63,34 @@ CREATE TABLE `tb_article` (
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_attendance`;
 CREATE TABLE `tb_attendance` (
-  `id` bigint(30) NOT NULL AUTO_INCREMENT COMMENT '用户id',
-  `user_id` bigint(30) DEFAULT NULL,
+  `id` varchar(50) NOT NULL COMMENT '用户id',
+  `user_id` varchar(50) DEFAULT NULL,
   `state` int(1) DEFAULT NULL COMMENT '0 出勤 1 请假 2 公差 3 迟到 4 早退 5 旷课',
-  `attendance_time` datetime DEFAULT NULL COMMENT '考勤时间',
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `tb_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+  `attendance_time` date DEFAULT NULL COMMENT '考勤时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of tb_attendance
 -- ----------------------------
-INSERT INTO `tb_attendance` VALUES ('1', '1', '0', '2019-04-23 17:42:45');
-INSERT INTO `tb_attendance` VALUES ('2', '2', '0', '2019-04-23 17:43:03');
-INSERT INTO `tb_attendance` VALUES ('3', '3', '1', '2019-04-23 17:43:13');
-INSERT INTO `tb_attendance` VALUES ('4', '4', '0', '2019-04-23 17:43:19');
+INSERT INTO `tb_attendance` VALUES ('1', '1', '0', '2019-04-23');
+INSERT INTO `tb_attendance` VALUES ('2', '2', '0', '2019-04-23');
+INSERT INTO `tb_attendance` VALUES ('3', '3', '1', '2019-04-23');
+INSERT INTO `tb_attendance` VALUES ('4', '4', '0', '2019-04-23');
+INSERT INTO `tb_attendance` VALUES ('5', '1', '0', '2019-05-05');
+INSERT INTO `tb_attendance` VALUES ('6', '2', '0', '2019-05-05');
+INSERT INTO `tb_attendance` VALUES ('7', '3', '0', '2019-05-05');
+INSERT INTO `tb_attendance` VALUES ('8', '4', '0', '2019-05-05');
 
 -- ----------------------------
 -- Table structure for tb_comment
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_comment`;
 CREATE TABLE `tb_comment` (
-  `id` bigint(11) NOT NULL AUTO_INCREMENT,
-  `article_id` int(11) DEFAULT NULL,
+  `id` varchar(50) NOT NULL,
+  `article_id` varchar(50) DEFAULT NULL,
   `content` longtext COMMENT '评论内容',
-  `user_id` int(11) DEFAULT NULL,
+  `user_id` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -101,7 +103,7 @@ CREATE TABLE `tb_comment` (
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_role`;
 CREATE TABLE `tb_role` (
-  `id` bigint(64) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `id` varchar(50) NOT NULL COMMENT '主键ID',
   `role_name` varchar(255) DEFAULT NULL COMMENT '角色名称',
   `role_code` varchar(255) DEFAULT NULL COMMENT '角色编号',
   `role_desc` varchar(255) DEFAULT NULL COMMENT '角色描述',
@@ -114,7 +116,7 @@ CREATE TABLE `tb_role` (
   `application_code` varchar(64) DEFAULT NULL COMMENT '系统编号',
   `status` varchar(20) NOT NULL COMMENT '状态 0-启用，1-禁用',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of tb_role
@@ -132,15 +134,15 @@ INSERT INTO `tb_role` VALUES ('7', '教师', 'role_teacher', '教师', '0', 'adm
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_schedule`;
 CREATE TABLE `tb_schedule` (
-  `id` bigint(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL COMMENT '用户id',
+  `id` varchar(50) NOT NULL,
+  `user_id` varchar(50) DEFAULT NULL COMMENT '用户id',
   `name` varchar(255) DEFAULT NULL COMMENT '教员姓名',
   `teaching_time` datetime DEFAULT NULL COMMENT '授课时间',
   `teaching_site` varchar(255) DEFAULT NULL COMMENT '授课地点',
   `teaching_theme` varchar(255) DEFAULT NULL COMMENT '授课主题',
   `teaching_state` varchar(255) DEFAULT NULL COMMENT '授课状态 1.已授课 2.未授课',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of tb_schedule
@@ -152,16 +154,22 @@ INSERT INTO `tb_schedule` VALUES ('1', '1', null, '2019-04-29 16:00:00', '大池
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_towns`;
 CREATE TABLE `tb_towns` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `id` varchar(50) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `county` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of tb_towns
 -- ----------------------------
 INSERT INTO `tb_towns` VALUES ('1', '官厅镇', '原州区');
+INSERT INTO `tb_towns` VALUES ('10', '香水镇', '泾源县');
+INSERT INTO `tb_towns` VALUES ('11', '白阳镇', '彭阳县');
+INSERT INTO `tb_towns` VALUES ('12', '火石寨乡', '西吉县');
+INSERT INTO `tb_towns` VALUES ('13', '奠安乡', '隆德县');
+INSERT INTO `tb_towns` VALUES ('14', '新民乡', '泾源县');
+INSERT INTO `tb_towns` VALUES ('15', '草庙乡', '彭阳县');
 INSERT INTO `tb_towns` VALUES ('2', '黄铎堡镇', '原州区');
 INSERT INTO `tb_towns` VALUES ('3', '张易镇', '原州区');
 INSERT INTO `tb_towns` VALUES ('4', '河川乡', '原州区');
@@ -170,19 +178,13 @@ INSERT INTO `tb_towns` VALUES ('6', '古雁街道', '原州区');
 INSERT INTO `tb_towns` VALUES ('7', '南关街道', '原州区');
 INSERT INTO `tb_towns` VALUES ('8', '吉强镇', '西吉县');
 INSERT INTO `tb_towns` VALUES ('9', '城关镇', '隆德县');
-INSERT INTO `tb_towns` VALUES ('10', '香水镇', '泾源县');
-INSERT INTO `tb_towns` VALUES ('11', '白阳镇', '彭阳县');
-INSERT INTO `tb_towns` VALUES ('12', '火石寨乡', '西吉县');
-INSERT INTO `tb_towns` VALUES ('13', '奠安乡', '隆德县');
-INSERT INTO `tb_towns` VALUES ('14', '新民乡', '泾源县');
-INSERT INTO `tb_towns` VALUES ('15', '草庙乡', '彭阳县');
 
 -- ----------------------------
 -- Table structure for tb_user
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_user`;
 CREATE TABLE `tb_user` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL COMMENT '用户名',
   `name` varchar(50) DEFAULT NULL COMMENT '真实姓名',
   `password` varchar(32) NOT NULL COMMENT '密码，加密存储',
@@ -196,28 +198,27 @@ CREATE TABLE `tb_user` (
   `head_pic` varchar(150) DEFAULT NULL COMMENT '头像地址',
   `is_mobile_check` varchar(1) DEFAULT '0' COMMENT '手机是否验证 （0否  1是）',
   `sex` varchar(1) DEFAULT '0' COMMENT '性别，1男，2女',
-  `user_level` int(11) DEFAULT NULL COMMENT '会员等级',
   `birthday` datetime DEFAULT NULL COMMENT '生日',
   `last_login_time` datetime DEFAULT NULL COMMENT '最后登录时间',
   `address` varchar(255) DEFAULT NULL COMMENT '地址',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of tb_user
 -- ----------------------------
-INSERT INTO `tb_user` VALUES ('1', 'ningzhi', '宁知', '123', '640402199512129999', '18829345027', '2019-04-19 16:05:23', '2019-04-19 16:05:34', '1', null, null, null, '0', '男', null, null, '2019-04-24 12:01:25', '宁夏回族自治区 固原市 原州区');
-INSERT INTO `tb_user` VALUES ('2', 'wangyu', '王玉', '123', '640402199412129999', null, '2019-04-23 10:43:14', '2019-04-23 10:43:17', '1', null, null, null, '0', '女', null, null, '2019-04-24 12:01:28', '宁夏回族自治区 固原市 原州区');
-INSERT INTO `tb_user` VALUES ('3', 'xiayu', '夏宇', '123', '640402199312129999', null, '2019-04-23 10:45:53', '2019-04-23 10:45:56', '1', null, null, null, '0', '男', null, null, null, '宁夏回族自治区 固原市 原州区');
-INSERT INTO `tb_user` VALUES ('4', 'lidong', '李冬', '123', '640402199212129999', null, '2019-04-23 10:47:56', '2019-04-23 10:47:59', '1', null, null, null, '0', '女', null, null, null, '宁夏回族自治区 固原市 原州区');
+INSERT INTO `tb_user` VALUES ('1', 'ningzhi', '宁知', '123', '640402199512129999', '18829345027', '2019-04-19 16:05:23', '2019-04-19 16:05:34', '1', null, null, null, '0', '男', null, '2019-04-24 12:01:25', '宁夏回族自治区 固原市 原州区');
+INSERT INTO `tb_user` VALUES ('2', 'wangyu', '王玉', '123', '640402199412129999', null, '2019-04-23 10:43:14', '2019-04-23 10:43:17', '1', null, null, null, '0', '女', null, '2019-04-24 12:01:28', '宁夏回族自治区 固原市 原州区');
+INSERT INTO `tb_user` VALUES ('3', 'xiayu', '夏宇', '123', '640402199312129999', null, '2019-04-23 10:45:53', '2019-04-23 10:45:56', '1', null, null, null, '0', '男', null, null, '宁夏回族自治区 固原市 原州区');
+INSERT INTO `tb_user` VALUES ('4', 'lidong', '李冬', '123', '640402199212129999', null, '2019-04-23 10:47:56', '2019-04-23 10:47:59', '1', null, null, null, '0', '女', null, null, '宁夏回族自治区 固原市 原州区');
 
 -- ----------------------------
 -- Table structure for tb_user_role
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_user_role`;
 CREATE TABLE `tb_user_role` (
-  `id` bigint(64) NOT NULL,
+  `id` varchar(64) NOT NULL,
   `user_id` varchar(64) DEFAULT NULL,
   `role_id` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
@@ -232,7 +233,7 @@ CREATE TABLE `tb_user_role` (
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_vedio`;
 CREATE TABLE `tb_vedio` (
-  `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '标题',
+  `id` varchar(50) NOT NULL COMMENT '标题',
   `title` varchar(255) DEFAULT NULL,
   `author` varchar(255) DEFAULT NULL COMMENT '作者',
   `add_time` datetime DEFAULT NULL,
@@ -252,13 +253,12 @@ CREATE TABLE `tb_vedio` (
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_villages`;
 CREATE TABLE `tb_villages` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` varchar(50) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `town_id` int(20) DEFAULT NULL,
+  `town_id` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `town_id` (`town_id`),
-  CONSTRAINT `town_id` FOREIGN KEY (`town_id`) REFERENCES `tb_towns` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+  KEY `town_id` (`town_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of tb_villages
