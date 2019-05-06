@@ -35,9 +35,9 @@
 		app.controller('myController',function ($scope,$http) {
 			$scope.findAll=function(){
 
-				$http.get('../user/findAll').success(
+				$http.get('../user/').success(
 						function (response) {
-							$scope.list=response;
+							$scope.list=response.data;
 						}
 				);
 			};
@@ -115,7 +115,7 @@
 			                  </table>
 			                  <!--数据列表/-->
 
-							<!--{{list}}-->
+<!--							{{list}}-->
 
 							  <!-- 分页 -->
 							<tm-pagination conf="paginationConf"></tm-pagination>

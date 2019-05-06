@@ -31,7 +31,15 @@ public class AttendanceController {
 	public Result findAll(){
 		return new Result(true,1000,"查询成功",attendanceService.findAll());
 	}
-	
+
+	/**
+	 * 查询全部考勤数据
+	 * @return
+	 */
+	@RequestMapping(value="/find",method= RequestMethod.GET)
+	public Result findAllAttendance(){
+		return new Result(true,1000,"查询成功",attendanceService.findAllAttendance());
+	}
 	/**
 	 * 根据ID查询
 	 * @param id ID
@@ -73,7 +81,7 @@ public class AttendanceController {
 	 */
 	@RequestMapping(value="/",method= RequestMethod.POST)
 	public Result add(@RequestBody Attendance attendance  ){
-		attendanceService.add(attendance);			
+		attendanceService.add(attendance);
 		return new Result(true,1000,"增加成功");
 	}
 	
@@ -82,7 +90,7 @@ public class AttendanceController {
 	 * @param attendance
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.PUT)
-	public Result update(@RequestBody Attendance attendance, @PathVariable Integer id ){
+	public Result update(@RequestBody Attendance attendance, @PathVariable String id ){
 		attendance.setId(id);
 		attendanceService.update(attendance);		
 		return new Result(true,1000,"修改成功");

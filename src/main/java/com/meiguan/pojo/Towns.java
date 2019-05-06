@@ -1,20 +1,30 @@
 package com.meiguan.pojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * 实体类
  * @author Administrator
  *
  */
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="tb_towns")
-public class Towns {
+public class Towns implements Serializable {
 
 	@Id
-	private Integer id;//
+	private String id;//
 
 
 	
@@ -22,26 +32,6 @@ public class Towns {
 	private String county;//
 
 	
-	public Integer getId() {		
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getName() {		
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getCounty() {		
-		return county;
-	}
-	public void setCounty(String county) {
-		this.county = county;
-	}
 
 
 	

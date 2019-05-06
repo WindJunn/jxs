@@ -82,7 +82,7 @@ public class ScheduleController {
 	 * @param schedule
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.PUT)
-	public Result update(@RequestBody Schedule schedule, @PathVariable Integer id ){
+	public Result update(@RequestBody Schedule schedule, @PathVariable String id ){
 		schedule.setId(id);
 		scheduleService.update(schedule);		
 		return new Result(true,1000,"修改成功");

@@ -82,7 +82,7 @@ public class TownsController {
 	 * @param towns
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.PUT)
-	public Result update(@RequestBody Towns towns, @PathVariable Integer id ){
+	public Result update(@RequestBody Towns towns, @PathVariable String id ){
 		towns.setId(id);
 		townsService.update(towns);		
 		return new Result(true,1000,"修改成功");

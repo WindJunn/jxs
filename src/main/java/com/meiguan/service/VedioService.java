@@ -90,12 +90,12 @@ public class VedioService {
 		return vedioDao.findAll(specification, pageRequest);
 	}
 
-	public Vedio findOne(Integer id) {
-		return vedioDao.findOne(id);
+	public Vedio findOne(String id) {
+		return vedioDao.findById(id).get();
 	}
 
 	public void add(Vedio vedio) {
-		vedio.setId(idWorker.nextId()); //主键值
+		vedio.setId(idWorker.nextId()+"");
 		vedioDao.save(vedio);
 	}
 	
@@ -104,12 +104,12 @@ public class VedioService {
 	}
 
 	public void delete(String id) {
-		vedioDao.delete(id);
+		vedioDao.deleteById(id);
 	}
 
 	public void deleteList(String[] ids) {
 		for (String id : ids) {
-			vedioDao.delete(id);
+			vedioDao.deleteById(id);
 		}
 	}
 

@@ -10,7 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * 实体类
+ * 评论实体类
+ *
  * @author Administrator
  *
  */
@@ -23,13 +24,13 @@ import javax.persistence.Table;
 public class Comment {
 
 	@Id
-	private Integer id;//
+	private String id;//
 
 
 	
-	private Integer article_id;//
+	private String articleId;//
 	private String content;//评论内容
-	private Integer user_id;//
+	private String userId;//
 
 	
 

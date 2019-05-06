@@ -82,7 +82,7 @@ public class CommentController {
 	 * @param comment
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.PUT)
-	public Result update(@RequestBody Comment comment, @PathVariable Integer id ){
+	public Result update(@RequestBody Comment comment, @PathVariable String id ){
 		comment.setId(id);
 		commentService.update(comment);		
 		return new Result(true,1000,"修改成功");

@@ -38,7 +38,7 @@ public class VedioController {
 	 * @return
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.GET)
-	public Result findOne(@PathVariable Integer id){
+	public Result findOne(@PathVariable String id){
 		return new Result(true,1000,"查询成功",vedioService.findOne(id));
 	}
 	
@@ -82,7 +82,7 @@ public class VedioController {
 	 * @param vedio
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.PUT)
-	public Result update(@RequestBody Vedio vedio, @PathVariable Integer id ){
+	public Result update(@RequestBody Vedio vedio, @PathVariable String id ){
 		vedio.setId(id);
 		vedioService.update(vedio);		
 		return new Result(true,1000,"修改成功");

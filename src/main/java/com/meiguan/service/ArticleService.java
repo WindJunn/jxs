@@ -87,11 +87,11 @@ public class ArticleService {
 	}
 
 	public Article findOne(String id) {
-		return articleDao.findOne(id);
+		return articleDao.findById(id).get();
 	}
 
 	public void add(Article article) {
-		article.setId(idWorker.nextId()+""); //主键值
+//		article.setId(idWorker.nextId()+""); //主键值
 		articleDao.save(article);
 	}
 	
@@ -100,12 +100,12 @@ public class ArticleService {
 	}
 
 	public void delete(String id) {
-		articleDao.delete(id);
+		articleDao.deleteById(id);
 	}
 
 	public void deleteList(String[] ids) {
 		for (String id : ids) {
-			articleDao.delete(id);
+			articleDao.deleteById(id);
 		}
 	}
 

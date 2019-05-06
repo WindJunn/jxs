@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * 实体类
@@ -20,18 +21,10 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Entity
 @Table(name="tb_villages")
-public class Villages {
+public class Villages implements Serializable {
 
 	@Id
-	private Long id;//
-
-
-	
+	private String id;//
 	private String name;//
-	private Integer town_id;//
-
-	
-
-
-	
+	private Integer townId;//
 }

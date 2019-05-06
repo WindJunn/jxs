@@ -25,10 +25,8 @@ public class UserRole {
 	@Id
 	private String id;//
 
-
-	
-	private String user_id;//
-	private String role_id;//
+	private String userId;//
+	private String roleId;//
 
 	
 

@@ -119,7 +119,7 @@ public class UserService {
 	}
 
 	public User findOne(String id) {
-		return userDao.findOne(id);
+		return userDao.findById(id).get();
 	}
 
 	public void add(User user) {
@@ -132,12 +132,12 @@ public class UserService {
 	}
 
 	public void delete(String id) {
-		userDao.delete(id);
+		userDao.deleteById(id);
 	}
 
 	public void deleteList(String[] ids) {
 		for (String id : ids) {
-			userDao.delete(id);
+			userDao.deleteById(id);
 		}
 	}
 

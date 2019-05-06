@@ -79,7 +79,7 @@ public class TownsService {
 	}
 
 	public Towns findOne(String id) {
-		return townsDao.findOne(id);
+		return townsDao.findById(id).get();
 	}
 
 	public void add(Towns towns) {
@@ -92,12 +92,12 @@ public class TownsService {
 	}
 
 	public void delete(String id) {
-		townsDao.delete(id);
+		townsDao.deleteById(id);
 	}
 
 	public void deleteList(String[] ids) {
 		for (String id : ids) {
-			townsDao.delete(id);
+			townsDao.deleteById(id);
 		}
 	}
 

@@ -82,7 +82,7 @@ public class UserController {
 	 * @param user
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.PUT)
-	public Result update(@RequestBody User user, @PathVariable Long id ){
+	public Result update(@RequestBody User user, @PathVariable String id ){
 		user.setId(id);
 		userService.update(user);		
 		return new Result(true,1000,"修改成功");

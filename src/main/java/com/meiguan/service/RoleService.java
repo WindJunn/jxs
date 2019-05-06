@@ -2,6 +2,7 @@ package com.meiguan.service;
 
 import com.meiguan.dao.RoleDao;
 import com.meiguan.pojo.Role;
+import com.meiguan.utils.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -118,7 +119,7 @@ public class RoleService {
 	}
 
 	public Role findOne(String id) {
-		return roleDao.findOne(id);
+		return roleDao.findById(id).get();
 	}
 
 	public void add(Role role) {
@@ -131,12 +132,12 @@ public class RoleService {
 	}
 
 	public void delete(String id) {
-		roleDao.delete(id);
+		roleDao.deleteById(id);
 	}
 
 	public void deleteList(String[] ids) {
 		for (String id : ids) {
-			roleDao.delete(id);
+			roleDao.deleteById(id);
 		}
 	}
 

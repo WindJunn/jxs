@@ -71,7 +71,7 @@ public class CommentService {
 	}
 
 	public Comment findOne(String id) {
-		return commentDao.findOne(id);
+		return commentDao.findById(id).get();
 	}
 
 	public void add(Comment comment) {
@@ -84,12 +84,12 @@ public class CommentService {
 	}
 
 	public void delete(String id) {
-		commentDao.delete(id);
+		commentDao.deleteById(id);
 	}
 
 	public void deleteList(String[] ids) {
 		for (String id : ids) {
-			commentDao.delete(id);
+			commentDao.deleteById(id);
 		}
 	}
 

@@ -5,9 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * 实体类
@@ -20,13 +22,12 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Entity
 @Table(name="tb_administrator")
-public class Administrator {
+public class Administrator implements Serializable {
 
 	@Id
-	private Long id;//
+	@Column(name = "id")
+	private String id;//
 
-
-	
 	private String pid;//
 	private String name;//
 	private String username;//
@@ -34,8 +35,8 @@ public class Administrator {
 	private String phone;//
 	private String status;//
 	private String address;//地址
-	private java.util.Date create_time;//
-	private java.util.Date update_time;//
+	private java.util.Date createTime;//
+	private java.util.Date updateTime;//
 
 	
 

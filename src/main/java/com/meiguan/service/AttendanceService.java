@@ -37,6 +37,11 @@ public class AttendanceService {
 		return attendanceDao.findAll();
 	}
 
+	public List findAllAttendance() {
+
+		return attendanceDao.findAllAttendance();
+	}
+
 	/**
 	 * 分页查询
 	 * 
@@ -71,7 +76,7 @@ public class AttendanceService {
 	}
 
 	public Attendance findOne(String id) {
-		return attendanceDao.findOne(id);
+		return attendanceDao.findById(id).get();
 	}
 
 	public void add(Attendance attendance) {
@@ -84,12 +89,12 @@ public class AttendanceService {
 	}
 
 	public void delete(String id) {
-		attendanceDao.delete(id);
+		attendanceDao.deleteById(id);
 	}
 
 	public void deleteList(String[] ids) {
 		for (String id : ids) {
-			attendanceDao.delete(id);
+			attendanceDao.deleteById(id);
 		}
 	}
 

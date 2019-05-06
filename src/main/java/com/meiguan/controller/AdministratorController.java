@@ -82,7 +82,7 @@ public class AdministratorController {
 	 * @param administrator
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.PUT)
-	public Result update(@RequestBody Administrator administrator, @PathVariable Long id ){
+	public Result update(@RequestBody Administrator administrator, @PathVariable String id ){
 		administrator.setId(id);
 		administratorService.update(administrator);		
 		return new Result(true,1000,"修改成功");

@@ -75,11 +75,11 @@ public class VillagesService {
 	}
 
 	public Villages findOne(String id) {
-		return villagesDao.findOne(id);
+		return villagesDao.findById(id).get();
 	}
 
 	public void add(Villages villages) {
-		villages.setId(idWorker.nextId()+""); //主键值
+		villages.setId(idWorker.nextId()+"");
 		villagesDao.save(villages);
 	}
 	
@@ -88,12 +88,12 @@ public class VillagesService {
 	}
 
 	public void delete(String id) {
-		villagesDao.delete(id);
+		villagesDao.deleteById(id);
 	}
 
 	public void deleteList(String[] ids) {
 		for (String id : ids) {
-			villagesDao.delete(id);
+			villagesDao.deleteById(id);
 		}
 	}
 

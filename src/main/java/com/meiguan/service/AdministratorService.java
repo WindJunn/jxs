@@ -99,11 +99,12 @@ public class AdministratorService {
 	}
 
 	public Administrator findOne(String id) {
-		return administratorDao.findOne(id);
+		return administratorDao.findById(id).get();
 	}
 
 	public void add(Administrator administrator) {
-		administrator.setId(idWorker.nextId()+""); //主键值
+        //主键值
+        administrator.setId(idWorker.nextId()+"");
 		administratorDao.save(administrator);
 	}
 	
@@ -112,12 +113,12 @@ public class AdministratorService {
 	}
 
 	public void delete(String id) {
-		administratorDao.delete(id);
+		administratorDao.deleteById(id);
 	}
 
 	public void deleteList(String[] ids) {
 		for (String id : ids) {
-			administratorDao.delete(id);
+			administratorDao.deleteById(id);
 		}
 	}
 

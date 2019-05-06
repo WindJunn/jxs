@@ -2,6 +2,7 @@ package com.meiguan.service;
 
 import com.meiguan.dao.ScheduleDao;
 import com.meiguan.pojo.Schedule;
+import com.meiguan.utils.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -86,7 +87,7 @@ public class ScheduleService {
 	}
 
 	public Schedule findOne(String id) {
-		return scheduleDao.findOne(id);
+		return scheduleDao.findById(id).get();
 	}
 
 	public void add(Schedule schedule) {
@@ -99,12 +100,12 @@ public class ScheduleService {
 	}
 
 	public void delete(String id) {
-		scheduleDao.delete(id);
+		scheduleDao.deleteById(id);
 	}
 
 	public void deleteList(String[] ids) {
 		for (String id : ids) {
-			scheduleDao.delete(id);
+			scheduleDao.deleteById(id);
 		}
 	}
 
