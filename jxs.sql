@@ -10,33 +10,10 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-05-06 17:36:29
+Date: 2019-05-07 18:19:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for tb_administrator
--- ----------------------------
-DROP TABLE IF EXISTS `tb_administrator`;
-CREATE TABLE `tb_administrator` (
-  `id` varchar(50) NOT NULL,
-  `pid` varchar(30) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `username` varchar(30) DEFAULT NULL,
-  `password` varchar(30) DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
-  `status` varchar(1) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL COMMENT '地址',
-  `create_time` datetime DEFAULT NULL,
-  `update_time` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of tb_administrator
--- ----------------------------
-INSERT INTO `tb_administrator` VALUES ('1', null, '无语', 'wuyu', '123', null, null, null, '2019-04-30 16:14:01', '2019-04-30 16:14:04');
 
 -- ----------------------------
 -- Table structure for tb_article
@@ -81,6 +58,40 @@ INSERT INTO `tb_attendance` VALUES ('5', '1', '0', '2019-05-05');
 INSERT INTO `tb_attendance` VALUES ('6', '2', '0', '2019-05-05');
 INSERT INTO `tb_attendance` VALUES ('7', '3', '0', '2019-05-05');
 INSERT INTO `tb_attendance` VALUES ('8', '4', '0', '2019-05-05');
+
+-- ----------------------------
+-- Table structure for tb_attendance_user
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_attendance_user`;
+CREATE TABLE `tb_attendance_user` (
+  `id` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL COMMENT '用户名',
+  `name` varchar(50) DEFAULT NULL COMMENT '真实姓名',
+  `password` varchar(100) NOT NULL COMMENT '密码，加密存储',
+  `pid` varchar(32) NOT NULL COMMENT '身份证号',
+  `phone` varchar(20) DEFAULT NULL COMMENT '注册手机号',
+  `created` datetime NOT NULL COMMENT '创建时间',
+  `updated` datetime NOT NULL,
+  `health` varchar(1) DEFAULT '1' COMMENT '健康状态（0死亡 1健康 2一般 3病重 4残疾）',
+  `nick_name` varchar(50) DEFAULT NULL COMMENT '昵称',
+  `status` varchar(1) DEFAULT NULL COMMENT '使用状态（Y正常 N非正常）',
+  `head_pic` varchar(150) DEFAULT NULL COMMENT '头像地址',
+  `is_mobile_check` varchar(1) DEFAULT '0' COMMENT '手机是否验证 （0否  1是）',
+  `sex` varchar(1) DEFAULT '0' COMMENT '性别，1男，2女',
+  `birthday` datetime DEFAULT NULL COMMENT '生日',
+  `last_login_time` datetime DEFAULT NULL COMMENT '最后登录时间',
+  `address` varchar(255) DEFAULT NULL COMMENT '地址',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
+
+-- ----------------------------
+-- Records of tb_attendance_user
+-- ----------------------------
+INSERT INTO `tb_attendance_user` VALUES ('1', 'ningzhi', '宁知', '123', '640402199512129991', '18829345027', '2019-04-19 16:05:23', '2019-04-19 16:05:34', '1', null, null, null, '0', '男', null, '2019-04-24 12:01:25', '宁夏回族自治区 固原市 原州区');
+INSERT INTO `tb_attendance_user` VALUES ('2', 'wangyu', '王玉', '123', '640402199412129992', null, '2019-04-23 10:43:14', '2019-04-23 10:43:17', '1', null, null, null, '0', '女', null, '2019-04-24 12:01:28', '宁夏回族自治区 固原市 原州区');
+INSERT INTO `tb_attendance_user` VALUES ('3', 'xiayu', '夏宇', '123', '640402199312129993', null, '2019-04-23 10:45:53', '2019-04-23 10:45:56', '1', null, null, null, '0', '男', null, null, '宁夏回族自治区 固原市 原州区');
+INSERT INTO `tb_attendance_user` VALUES ('4', 'lidong', '李冬', '123', '640402199212129994', null, '2019-04-23 10:47:56', '2019-04-23 10:47:59', '1', null, null, null, '0', '女', null, null, '宁夏回族自治区 固原市 原州区');
 
 -- ----------------------------
 -- Table structure for tb_comment
@@ -185,33 +196,26 @@ INSERT INTO `tb_towns` VALUES ('9', '城关镇', '隆德县');
 DROP TABLE IF EXISTS `tb_user`;
 CREATE TABLE `tb_user` (
   `id` varchar(50) NOT NULL,
-  `username` varchar(50) NOT NULL COMMENT '用户名',
-  `name` varchar(50) DEFAULT NULL COMMENT '真实姓名',
-  `password` varchar(32) NOT NULL COMMENT '密码，加密存储',
-  `pid` varchar(32) NOT NULL COMMENT '身份证号',
-  `phone` varchar(20) DEFAULT NULL COMMENT '注册手机号',
-  `created` datetime NOT NULL COMMENT '创建时间',
-  `updated` datetime NOT NULL,
-  `health` varchar(1) DEFAULT '1' COMMENT '健康状态（0死亡 1健康 2一般 3病重 4残疾）',
-  `nick_name` varchar(50) DEFAULT NULL COMMENT '昵称',
-  `status` varchar(1) DEFAULT NULL COMMENT '使用状态（Y正常 N非正常）',
-  `head_pic` varchar(150) DEFAULT NULL COMMENT '头像地址',
-  `is_mobile_check` varchar(1) DEFAULT '0' COMMENT '手机是否验证 （0否  1是）',
-  `sex` varchar(1) DEFAULT '0' COMMENT '性别，1男，2女',
-  `birthday` datetime DEFAULT NULL COMMENT '生日',
-  `last_login_time` datetime DEFAULT NULL COMMENT '最后登录时间',
+  `pid` varchar(30) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `status` varchar(1) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL COMMENT '地址',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
+  `create_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of tb_user
 -- ----------------------------
-INSERT INTO `tb_user` VALUES ('1', 'ningzhi', '宁知', '123', '640402199512129999', '18829345027', '2019-04-19 16:05:23', '2019-04-19 16:05:34', '1', null, null, null, '0', '男', null, '2019-04-24 12:01:25', '宁夏回族自治区 固原市 原州区');
-INSERT INTO `tb_user` VALUES ('2', 'wangyu', '王玉', '123', '640402199412129999', null, '2019-04-23 10:43:14', '2019-04-23 10:43:17', '1', null, null, null, '0', '女', null, '2019-04-24 12:01:28', '宁夏回族自治区 固原市 原州区');
-INSERT INTO `tb_user` VALUES ('3', 'xiayu', '夏宇', '123', '640402199312129999', null, '2019-04-23 10:45:53', '2019-04-23 10:45:56', '1', null, null, null, '0', '男', null, null, '宁夏回族自治区 固原市 原州区');
-INSERT INTO `tb_user` VALUES ('4', 'lidong', '李冬', '123', '640402199212129999', null, '2019-04-23 10:47:56', '2019-04-23 10:47:59', '1', null, null, null, '0', '女', null, null, '宁夏回族自治区 固原市 原州区');
+INSERT INTO `tb_user` VALUES ('1', '640402199212129994', '吴语', 'wuyu', '123', null, '1', null, '2019-04-30 16:14:01', '2019-04-30 16:14:04');
+INSERT INTO `tb_user` VALUES ('1125650939160653824', null, null, 'wu', '$2a$10$O4r2brc/yRUlL4hDhwdyDOT1SSUUoPV7PitbrFUKXYCtYQha6gqv2', null, '1', null, '2019-05-07 06:37:52', '2019-05-07 06:37:52');
+INSERT INTO `tb_user` VALUES ('1125651432683352064', null, null, 'wu', '$2a$10$15Uk0BwQDLizMTL4XLdT1.T8D8u8rl1hMcQ/NEHqrxPpYgxV7RvNG', null, '1', null, '2019-05-07 06:39:50', '2019-05-07 06:39:50');
+INSERT INTO `tb_user` VALUES ('1125651452291723264', null, null, 'wu', '$2a$10$VUNmKoWBZolOekORNFV88epGqgZKDn29XvblvS8A8417qM.gbuYKm', null, '1', null, '2019-05-07 06:39:54', '2019-05-07 06:39:54');
+INSERT INTO `tb_user` VALUES ('2', '640402199212129999', '超级管理员', 'admin', 'admin', null, '1', null, '2019-05-07 11:18:40', '2019-05-07 11:18:45');
 
 -- ----------------------------
 -- Table structure for tb_user_role
