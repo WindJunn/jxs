@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 /**
  * 数据访问接口
- * @author Administrator
+ * @author User
  *
  */
 public interface VillagesDao extends JpaRepository<Villages,String>, JpaSpecificationExecutor<Villages> {

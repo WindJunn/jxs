@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * 数据访问接口
- * @author Administrator
+ * @author User
  *
  */
 public interface AttendanceDao extends JpaRepository<Attendance,String>, JpaSpecificationExecutor<Attendance> {

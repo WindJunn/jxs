@@ -12,12 +12,12 @@ import java.util.Map;
 
 /**
  * 控制器层
- * @author Administrator
+ * @author User
  *
  */
 @RestController
 @CrossOrigin
-@RequestMapping("/user")
+@RequestMapping("/administrator")
 public class UserController {
 
 	@Autowired
@@ -29,7 +29,7 @@ public class UserController {
 	 */
 	@RequestMapping(value="/",method= RequestMethod.GET)
 	public Result findAll(){
-		return new Result(true,1000,"查询成功",userService.findAll());
+		return new Result(true,1000,"查询成功", userService.findAll());
 	}
 	
 	/**
@@ -39,7 +39,7 @@ public class UserController {
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.GET)
 	public Result findOne(@PathVariable String id){
-		return new Result(true,1000,"查询成功",userService.findOne(id));
+		return new Result(true,1000,"查询成功", userService.findOne(id));
 	}
 	
 	/**
@@ -64,7 +64,7 @@ public class UserController {
 	@RequestMapping(value="/{page}/{size}",method= RequestMethod.POST)
 	public Result findSearch(@RequestBody Map searchMap , @PathVariable int page, @PathVariable int size){
 		Page<User> pageList = userService.findSearch(searchMap, page, size);
-		return  new Result(true,1000,"查询成功",  new PageResult<User>(pageList.getTotalElements(), pageList.getContent()) );		
+		return  new Result(true,1000,"查询成功",  new PageResult<User>(pageList.getTotalElements(), pageList.getContent()) );
 	}
 	
 	/**
@@ -72,8 +72,8 @@ public class UserController {
 	 * @param user
 	 */
 	@RequestMapping(value="/",method= RequestMethod.POST)
-	public Result add(@RequestBody User user  ){
-		userService.add(user);			
+	public Result add(@RequestBody User user){
+		userService.add(user);
 		return new Result(true,1000,"增加成功");
 	}
 	
@@ -84,7 +84,7 @@ public class UserController {
 	@RequestMapping(value="/{id}",method= RequestMethod.PUT)
 	public Result update(@RequestBody User user, @PathVariable String id ){
 		user.setId(id);
-		userService.update(user);		
+		userService.update(user);
 		return new Result(true,1000,"修改成功");
 	}
 	
