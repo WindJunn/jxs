@@ -12,7 +12,7 @@ import javax.persistence.Table;
 /**
  * 评论实体类
  *
- * @author User
+ * @author Users
  *
  */
 @Builder

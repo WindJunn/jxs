@@ -1,7 +1,7 @@
 package com.meiguan.service;
 
 import com.meiguan.dao.UserDao;
-import com.meiguan.pojo.User;
+import com.meiguan.pojo.Users;
 import com.meiguan.utils.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * 服务层
  * 
- * @author User
+ * @author Users
  *
  */
 @Service
@@ -32,7 +32,7 @@ public class UserService {
 	@Autowired
 	private IdWorker idWorker;
 
-	public List<User> findAll() {
+	public List<Users> findAll() {
 
 		return userDao.findAll();
 	}
@@ -44,17 +44,17 @@ public class UserService {
 	 * @param size
 	 * @return
 	 */
-	public Page<User> findPage(int page, int size) {
+	public Page<Users> findPage(int page, int size) {
 		PageRequest pageRequest = new PageRequest(page-1, size);
 		return userDao.findAll(pageRequest);
 	}
 
-	private Specification<User> where(Map searchMap) {
+	private Specification<Users> where(Map searchMap) {
 		
-		return new Specification<User>() {
+		return new Specification<Users>() {
           
 			@Override
-			public Predicate toPredicate(Root<User> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			public Predicate toPredicate(Root<Users> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				List<Predicate> predicateList = new ArrayList<Predicate>();
                 // 
                 if (searchMap.get("pid")!=null && !"".equals(searchMap.get("pid"))) {
@@ -92,26 +92,30 @@ public class UserService {
 		
 	}
 
-	public Page<User> findSearch(Map whereMap, int page, int size) {
-		Specification<User> specification = where(whereMap);
+	public Page<Users> findSearch(Map whereMap, int page, int size) {
+		Specification<Users> specification = where(whereMap);
 		PageRequest pageRequest = new PageRequest(page-1, size);
 		return userDao.findAll(specification, pageRequest);
 	}
 
-	public User findOne(String id) {
+	public Users findOne(String id) {
 		return userDao.findById(id).get();
 	}
-	public User findOne1(String username) {
-		return userDao.findByName(username);
+	public Users findOne1(String username) {
+		return userDao.findByUsername(username);
 	}
-	public void add(User user) {
+
+	public Users findByUserNameAndPassword(String username,String password) {
+		return userDao.findByUserNameAndPassword(username,password);
+	}
+	public void add(Users users) {
         //主键值
-        user.setId(idWorker.nextId()+"");
-		userDao.save(user);
+        users.setId(idWorker.nextId()+"");
+		userDao.save(users);
 	}
 	
-	public void update(User user) {
-		userDao.save(user);
+	public void update(Users users) {
+		userDao.save(users);
 	}
 
 	public void delete(String id) {

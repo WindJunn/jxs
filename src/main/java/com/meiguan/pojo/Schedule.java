@@ -13,7 +13,7 @@ import java.util.Date;
 
 /**
  * 实体类排班表
- * @author User
+ * @author Users
  *
  */
 @Builder

@@ -1,6 +1,6 @@
 package com.meiguan.controller;
 
-import com.meiguan.pojo.User;
+import com.meiguan.pojo.Users;
 import com.meiguan.service.UserService;
 import com.meiguan.utils.PageResult;
 import com.meiguan.utils.Result;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 /**
  * 控制器层
- * @author User
+ * @author Users
  *
  */
 @RestController
@@ -52,8 +52,8 @@ public class UserController {
 	 */
 	@RequestMapping(value="/{page}/{size}",method= RequestMethod.GET)
 	public Result findPage(@PathVariable int page, @PathVariable int size){
-		Page<User> pageList = userService.findPage(page, size);
-		return new Result(true,1000,"查询成功",new PageResult<User>(pageList.getTotalElements(), pageList.getContent() ) );
+		Page<Users> pageList = userService.findPage(page, size);
+		return new Result(true,1000,"查询成功",new PageResult<Users>(pageList.getTotalElements(), pageList.getContent() ) );
 	}
 	
 	/**
@@ -65,45 +65,45 @@ public class UserController {
 	 */
 	@RequestMapping(value="/{page}/{size}",method= RequestMethod.POST)
 	public Result findSearch(@RequestBody Map searchMap , @PathVariable int page, @PathVariable int size){
-		Page<User> pageList = userService.findSearch(searchMap, page, size);
-		return  new Result(true,1000,"查询成功",  new PageResult<User>(pageList.getTotalElements(), pageList.getContent()) );
+		Page<Users> pageList = userService.findSearch(searchMap, page, size);
+		return  new Result(true,1000,"查询成功",  new PageResult<Users>(pageList.getTotalElements(), pageList.getContent()) );
 	}
 	
 	/**
 	 * 增加
-	 * @param user
+	 * @param users
 	 */
 	@RequestMapping(value="/",method= RequestMethod.POST)
-	public Result add(@RequestBody User user){
+	public Result add(@RequestBody Users users){
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		users.setPassword(passwordEncoder.encode(users.getPassword()));
 
-		userService.add(user);
+		userService.add(users);
 		return new Result(true,1000,"增加成功");
 	}
 
 	@RequestMapping(value="/add",method= RequestMethod.GET)
 	public Result add1(){
-		User user = new User();
-		user.setUsername("wuu");
-		user.setCreateTime(new Date());
-		user.setUpdateTime(new Date());
+		Users users = new Users();
+		users.setUsername("wuu");
+		users.setCreateTime(new Date());
+		users.setUpdateTime(new Date());
 
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		user.setPassword(passwordEncoder.encode("123"));
+		users.setPassword(passwordEncoder.encode("123"));
 
-		userService.add(user);
+		userService.add(users);
 		return new Result(true,1000,"增加成功");
 	}
 	
 	/**
 	 * 修改
-	 * @param user
+	 * @param users
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.PUT)
-	public Result update(@RequestBody User user, @PathVariable String id ){
-		user.setId(id);
-		userService.update(user);
+	public Result update(@RequestBody Users users, @PathVariable String id ){
+		users.setId(id);
+		userService.update(users);
 		return new Result(true,1000,"修改成功");
 	}
 	
@@ -118,5 +118,10 @@ public class UserController {
 	}
 
 
+	@RequestMapping(value = "/login",method = RequestMethod.GET)
+	public Result lonin(@PathVariable String username,@PathVariable String password) {
+		userService.findByUserNameAndPassword(username, password);
+		return new Result(true, 1000, "登录成功");
+	}
 	
 }

@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 /**
  * 实体类
- * @author User
+ * @author Users
  *
  */
 @Builder

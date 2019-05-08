@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 /**
  * 实体类
- * @author User
+ * @author Users
  *
  */
 @Builder

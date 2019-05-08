@@ -15,7 +15,7 @@ import java.util.Collection;
 
 /**
  * 实体类
- * @author User
+ * @author Users
  *
  */
 @Builder
@@ -24,10 +24,11 @@ import java.util.Collection;
 @AllArgsConstructor
 @Entity
 @Table(name="tb_user")
-public class User implements Serializable, UserDetails, GrantedAuthority {
+public class Users implements Serializable, UserDetails, GrantedAuthority {
 
 	@Id
 	private String id;//
+    //
 
 	private String pid;//
 	private String name;//
