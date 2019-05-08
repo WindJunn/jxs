@@ -85,7 +85,7 @@ public class UserController {
 	@RequestMapping(value="/add",method= RequestMethod.GET)
 	public Result add1(){
 		User user = new User();
-		user.setUsername("wu");
+		user.setUsername("wuu");
 		user.setCreateTime(new Date());
 		user.setUpdateTime(new Date());
 

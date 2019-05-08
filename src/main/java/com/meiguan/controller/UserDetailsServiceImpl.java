@@ -1,6 +1,7 @@
 package com.meiguan.controller;
 
 import com.meiguan.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private UserService userService;
@@ -23,7 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("经过认证类:" + username);
-
+        log.info("用户的用户名: {}", username);
         List<GrantedAuthority> grantAuths = new ArrayList();
         grantAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
         /**
@@ -34,7 +36,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
          *  * 3.认证信息（角色）
          */
         // 去数据库进行查询:
-        com.meiguan.pojo.User user = userService.findOne(username);
+        com.meiguan.pojo.User user = userService.findOne1(username);
         if (user != null) {
             return new User(username, user.getPassword(), grantAuths);
         }

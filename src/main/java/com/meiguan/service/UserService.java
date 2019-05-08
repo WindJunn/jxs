@@ -101,7 +101,9 @@ public class UserService {
 	public User findOne(String id) {
 		return userDao.findById(id).get();
 	}
-
+	public User findOne1(String username) {
+		return userDao.findByName(username);
+	}
 	public void add(User user) {
         //主键值
         user.setId(idWorker.nextId()+"");
