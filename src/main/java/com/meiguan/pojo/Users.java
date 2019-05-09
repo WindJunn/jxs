@@ -4,14 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 实体类
@@ -24,7 +24,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @Entity
 @Table(name="tb_user")
-public class Users implements Serializable, UserDetails, GrantedAuthority {
+public class Users implements Serializable {
 
 	@Id
 	private String id;//
@@ -40,34 +40,7 @@ public class Users implements Serializable, UserDetails, GrantedAuthority {
 	private java.util.Date createTime;//
 	private java.util.Date updateTime;//
 
+	@ManyToMany(mappedBy = "users")
+	private Set<Role> roles = new HashSet<Role>(0);
 
-	@Override
-	public String getAuthority() {
-		return null;
-	}
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return false;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return false;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return false;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return false;
-	}
 }

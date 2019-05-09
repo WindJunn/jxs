@@ -4,6 +4,7 @@ import com.meiguan.pojo.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 /**
  * 数据访问接口
@@ -17,9 +18,9 @@ public interface UserDao extends JpaRepository<Users,String>, JpaSpecificationEx
      * @param username
      * @return
      */
+
     Users findByUsername(String username);
 
-    @Query(value = "select * from tb_user where username = ? and password = ?",nativeQuery = true)
-    Users findByUserNameAndPassword(String username,String password);
-	
+    @Query(value = "select * from tb_user where :username and :password",nativeQuery = true)
+    Users findByUserNameAndPassword(@Param("username") String username, @Param("password") String password);
 }

@@ -123,7 +123,7 @@ public class RoleService {
 	}
 
 	public void add(Role role) {
-		role.setId(idWorker.nextId()+""); //主键值
+		role.setRoleId(idWorker.nextId()+""); //主键值
 		roleDao.save(role);
 	}
 	

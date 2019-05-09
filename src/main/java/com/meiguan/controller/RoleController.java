@@ -83,7 +83,7 @@ public class RoleController {
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.PUT)
 	public Result update(@RequestBody Role role, @PathVariable String id ){
-		role.setId(id);
+		role.setRoleId(id);
 		roleService.update(role);		
 		return new Result(true,1000,"修改成功");
 	}

@@ -118,10 +118,10 @@ public class UserController {
 	}
 
 
-	@RequestMapping(value = "/login",method = RequestMethod.GET)
-	public Result lonin(@PathVariable String username,@PathVariable String password) {
-		userService.findByUserNameAndPassword(username, password);
-		return new Result(true, 1000, "登录成功");
+	@RequestMapping(value = "/login",method = RequestMethod.POST)
+	public Users lonin(@PathVariable String username,@PathVariable String password) {
+		Users user = userService.findByUserNameAndPassword(username, password);
+		return  user;
 	}
 	
 }
