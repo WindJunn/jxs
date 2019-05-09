@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-05-07 18:19:52
+Date: 2019-05-09 18:17:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -116,15 +116,8 @@ DROP TABLE IF EXISTS `tb_role`;
 CREATE TABLE `tb_role` (
   `id` varchar(50) NOT NULL COMMENT '主键ID',
   `role_name` varchar(255) DEFAULT NULL COMMENT '角色名称',
-  `role_code` varchar(255) DEFAULT NULL COMMENT '角色编号',
   `role_desc` varchar(255) DEFAULT NULL COMMENT '角色描述',
   `is_default` varchar(20) DEFAULT NULL COMMENT '是否默认',
-  `creator` varchar(255) DEFAULT NULL COMMENT '创建人',
-  `create_date` varchar(64) DEFAULT NULL COMMENT '创建时间',
-  `modifier` varchar(255) DEFAULT NULL COMMENT '修改人',
-  `modify_date` varchar(64) DEFAULT NULL COMMENT '修改时间',
-  `del_flag` varchar(20) DEFAULT NULL COMMENT '删除标记',
-  `application_code` varchar(64) DEFAULT NULL COMMENT '系统编号',
   `status` varchar(20) NOT NULL COMMENT '状态 0-启用，1-禁用',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
@@ -132,13 +125,13 @@ CREATE TABLE `tb_role` (
 -- ----------------------------
 -- Records of tb_role
 -- ----------------------------
-INSERT INTO `tb_role` VALUES ('1', '普通用户', 'role_user', '普通用户', '1', 'admin', '2019-02-25 13:43:15', 'admin', '2019-02-25 13:43:15', '0', 'EXAM', '0');
-INSERT INTO `tb_role` VALUES ('2', '村管理员', 'role_admin_village', '村管理员', '0', 'admin', '2019-02-25 13:41:27', 'admin', '2019-03-06 13:47:31', '0', 'EXAM', '0');
-INSERT INTO `tb_role` VALUES ('3', '镇管理员', 'role_admin_town', '镇管理员', '0', 'admin', '2019-02-25 13:41:27', 'admin', '2019-03-06 13:47:31', '0', 'EXAM', '0');
-INSERT INTO `tb_role` VALUES ('4', '县管理员', 'role_admin_county', '县管理员', '0', 'admin', '2019-02-25 13:41:27', 'admin', '2019-03-06 13:47:31', '0', 'EXAM', '0');
-INSERT INTO `tb_role` VALUES ('5', '市管理员', 'role_admin_city', '市管理员', '0', 'admin', '2019-02-25 13:41:27', 'admin', '2019-03-06 13:47:31', '0', 'EXAM', '0');
-INSERT INTO `tb_role` VALUES ('6', '超级管理员', 'role_admin', '超级管理员', '0', 'admin', '2019-02-25 13:41:27', 'admin', '2019-03-06 13:47:31', '0', 'EXAM', '0');
-INSERT INTO `tb_role` VALUES ('7', '教师', 'role_teacher', '教师', '0', 'admin', '2019-02-25 13:42:29', 'admin', '2019-02-25 13:42:29', '0', 'EXAM', '0');
+INSERT INTO `tb_role` VALUES ('1', '普通用户', '普通用户', '1', '0');
+INSERT INTO `tb_role` VALUES ('2', '村管理员', '村管理员', '0', '0');
+INSERT INTO `tb_role` VALUES ('3', '镇管理员', '镇管理员', '0', '0');
+INSERT INTO `tb_role` VALUES ('4', '县管理员', '县管理员', '0', '0');
+INSERT INTO `tb_role` VALUES ('5', '市管理员', '市管理员', '0', '0');
+INSERT INTO `tb_role` VALUES ('6', '超级管理员', '超级管理员', '0', '0');
+INSERT INTO `tb_role` VALUES ('7', '教师', '教师', '0', '0');
 
 -- ----------------------------
 -- Table structure for tb_schedule
@@ -212,8 +205,8 @@ CREATE TABLE `tb_user` (
 -- Records of tb_user
 -- ----------------------------
 INSERT INTO `tb_user` VALUES ('1', '640402199212129994', '吴语', 'wuyu', '123', null, '1', null, '2019-04-30 16:14:01', '2019-04-30 16:14:04');
-INSERT INTO `tb_user` VALUES ('1125650939160653824', null, null, 'wu', '$2a$10$O4r2brc/yRUlL4hDhwdyDOT1SSUUoPV7PitbrFUKXYCtYQha6gqv2', null, '1', null, '2019-05-07 06:37:52', '2019-05-07 06:37:52');
-INSERT INTO `tb_user` VALUES ('1125651432683352064', null, null, 'wu', '$2a$10$15Uk0BwQDLizMTL4XLdT1.T8D8u8rl1hMcQ/NEHqrxPpYgxV7RvNG', null, '1', null, '2019-05-07 06:39:50', '2019-05-07 06:39:50');
+INSERT INTO `tb_user` VALUES ('1125650939160653824', null, null, 'wu1', '$2a$10$O4r2brc/yRUlL4hDhwdyDOT1SSUUoPV7PitbrFUKXYCtYQha6gqv2', null, '1', null, '2019-05-07 06:37:52', '2019-05-07 06:37:52');
+INSERT INTO `tb_user` VALUES ('1125651432683352064', null, null, 'wu2', '$2a$10$15Uk0BwQDLizMTL4XLdT1.T8D8u8rl1hMcQ/NEHqrxPpYgxV7RvNG', null, '1', null, '2019-05-07 06:39:50', '2019-05-07 06:39:50');
 INSERT INTO `tb_user` VALUES ('1125651452291723264', null, null, 'wu', '$2a$10$VUNmKoWBZolOekORNFV88epGqgZKDn29XvblvS8A8417qM.gbuYKm', null, '1', null, '2019-05-07 06:39:54', '2019-05-07 06:39:54');
 INSERT INTO `tb_user` VALUES ('2', '640402199212129999', '超级管理员', 'admin', 'admin', null, '1', null, '2019-05-07 11:18:40', '2019-05-07 11:18:45');
 
@@ -222,9 +215,9 @@ INSERT INTO `tb_user` VALUES ('2', '640402199212129999', '超级管理员', 'adm
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_user_role`;
 CREATE TABLE `tb_user_role` (
-  `id` varchar(64) NOT NULL,
-  `user_id` varchar(64) DEFAULT NULL,
-  `role_id` varchar(64) DEFAULT NULL,
+  `id` varchar(100) NOT NULL,
+  `user_id` varchar(100) DEFAULT NULL,
+  `role_id` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
