@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-05-09 18:17:22
+Date: 2019-05-10 18:19:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -110,6 +110,43 @@ CREATE TABLE `tb_comment` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for tb_permission
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_permission`;
+CREATE TABLE `tb_permission` (
+  `id` varchar(255) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `keystr` varchar(255) DEFAULT NULL COMMENT '权限键值',
+  `resid` varchar(255) DEFAULT NULL COMMENT '关联的资源，如果没有则为系统权限',
+  `valid` tinyint(1) DEFAULT NULL COMMENT '当前元组是否有效，1（true）表示有效；0（false）表示无效【无效时不能操作该元组】',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of tb_permission
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for tb_resource
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_resource`;
+CREATE TABLE `tb_resource` (
+  `id` varchar(255) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `num` int(11) DEFAULT NULL,
+  `parent_id` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `valid` tinyint(1) DEFAULT NULL,
+  `cdate` datetime DEFAULT NULL,
+  `mdate` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of tb_resource
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for tb_role
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_role`;
@@ -132,6 +169,21 @@ INSERT INTO `tb_role` VALUES ('4', '县管理员', '县管理员', '0', '0');
 INSERT INTO `tb_role` VALUES ('5', '市管理员', '市管理员', '0', '0');
 INSERT INTO `tb_role` VALUES ('6', '超级管理员', '超级管理员', '0', '0');
 INSERT INTO `tb_role` VALUES ('7', '教师', '教师', '0', '0');
+
+-- ----------------------------
+-- Table structure for tb_role_permission
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_role_permission`;
+CREATE TABLE `tb_role_permission` (
+  `id` varchar(50) NOT NULL,
+  `role_id` varchar(50) DEFAULT NULL,
+  `permission_id` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of tb_role_permission
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tb_schedule
@@ -188,7 +240,7 @@ INSERT INTO `tb_towns` VALUES ('9', '城关镇', '隆德县');
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_user`;
 CREATE TABLE `tb_user` (
-  `id` varchar(50) NOT NULL,
+  `user_id` varchar(50) NOT NULL,
   `pid` varchar(30) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `username` varchar(50) DEFAULT NULL,
@@ -198,7 +250,7 @@ CREATE TABLE `tb_user` (
   `address` varchar(255) DEFAULT NULL COMMENT '地址',
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------

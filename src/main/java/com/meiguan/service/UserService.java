@@ -110,7 +110,7 @@ public class UserService {
 	}
 	public void add(Users users) {
         //主键值
-        users.setId(idWorker.nextId()+"");
+        users.setUserId(idWorker.nextId()+"");
 		userDao.save(users);
 	}
 	

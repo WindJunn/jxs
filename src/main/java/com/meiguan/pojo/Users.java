@@ -5,11 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,9 +25,7 @@ import java.util.Set;
 public class Users implements Serializable {
 
 	@Id
-	private String id;//
-    //
-
+	private String userId;//
 	private String pid;//
 	private String name;//
 	private String username;//
@@ -37,10 +33,16 @@ public class Users implements Serializable {
 	private String phone;//
 	private String status;//
 	private String address;//地址
-	private java.util.Date createTime;//
-	private java.util.Date updateTime;//
+	private Date createTime;//
+	private Date updateTime;//
 
-	@ManyToMany(mappedBy = "users")
-	private Set<Role> roles = new HashSet<Role>(0);
 
+    @ManyToMany
+    @JoinTable(name="tb_user_role",//中间表的名称joinColumns
+            //中间表tb_user_role的字段关联tb_user表的主键user_id
+            joinColumns={@JoinColumn(name="user_id",referencedColumnName="user_id")},
+            //中间表tb_user_role字段关联tb_role表的主键字段role_id
+            inverseJoinColumns={@JoinColumn(name="role_id",referencedColumnName="role_id")}
+    )
+    private Set<Role> roles = new HashSet<Role>(0);
 }
